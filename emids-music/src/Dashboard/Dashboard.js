@@ -1,7 +1,6 @@
 import React from 'react'
 import "./Dashboard.css"
-import Sidebar from './Sidebar'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
 export default function Dashboard() {
   const [songs, setSongs] = useState([]);
@@ -12,12 +11,13 @@ export default function Dashboard() {
    console.log(jsonApiData);
    setSongs(jsonApiData.tracks.items);
   }
-
+  useEffect(() => {
+    getSongs();
+  }, []);
   return (
     <>
       <nav className="navbar">
         <div className="container-fluid" style={{backgroundColor:"#0A1172"}}>
-          <a className="navbar-brand" style={{color:"white"}}>Emids Music</a>
           <form className="d-flex" role="search">
             <input
               className="form-control me-2"
@@ -32,16 +32,11 @@ export default function Dashboard() {
           </form>
         </div>
       </nav>   
-      <button onClick={getSongs}>getdata</button>
       <div className="main-dashboardBody">
-        <Sidebar></Sidebar>
         <div className="songs-dashboard" style={{ marginLeft: "16%", height: 100}}>
-          <div className="row">
-            <div className="col">
-
-            </div>
-          </div>
-          {
+          <div className="col">
+            <div className="row">
+            {
             songs.map((songsdata)=>{
               return( <div key = {songsdata.id} className = "col">
                 <div className="card" style={{ width: "12rem" }}>
@@ -61,6 +56,9 @@ export default function Dashboard() {
             }
             )
           }
+            </div>
+          </div>
+         
         </div>       
       </div>
     </>
