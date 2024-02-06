@@ -12,7 +12,7 @@ export default function Dashboard() {
    setSongs(jsonApiData.tracks.items);
   }
   useEffect(() => {
-    getSongs();
+    //getSongs();
   }, []);
   return (
     <>

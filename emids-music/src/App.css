@@ -7,29 +7,3 @@ body {
   background: #ffffff;
   font-size: 15px;
 }
-.app {
-  background: #a8d5e5;
-  position: fixed !important;
-  height: 100vh;
-}
-h1 {
-  color: #165a72;
-  margin: 50px auto;
-  font-size: 30px;
-}
-.menu1 {
-  margin-bottom: 40px;
-  margin-top: 20px;
-  
-}
-h2 {
-  color: #165a72;
-  font-size: 22px;
-}
-.main-div
-{
-  margin-left: 42vh;
-}
-.app a.active {
-  color: red;
-}
