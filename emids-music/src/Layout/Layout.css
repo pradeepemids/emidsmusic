@@ -1,36 +1,41 @@
 body {
-    margin: 0;
-    font-family: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", "Figtree", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    height: 100vh;
-    background: #ffffff;
-    font-size: 15px;
-  }
-  .app {
-    background: #CCEAF6;
-    position: fixed !important;
-    height: 100vh;
-  }
-  h1 {
-    color: #165a72;
-    margin: 50px auto;
-    font-size: 30px;
-  }
-  .menu1 {
-    margin-bottom: 40px;
-    margin-top: 20px;
-    
-  }
-  h2 {
-    color: #165a72;
-    font-size: 22px;
-    margin-top: 8px;
-  }
-  .main-div
-  {
-    margin-left: 42vh;
-  }
-  .app a.active {
-    color: #0FE4BD;
-  }
+  margin: 0;
+  font-family: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", "Figtree", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  background: #ffffff;
+  font-size: 15px;
+}
+
+.menu {
+  width: 24%;
+}
+
+.app {
+  background: #a8d5e5;
+  position: fixed !important;
+  height: 100vh;
+}
+
+h1 {
+  color: #165a72;
+  margin: 50px auto;
+  font-size: 30px;
+}
+
+.menu1 {
+  margin-bottom: 40px;
+  margin-top: 20px;
+
+}
+
+h2 {
+  color: #165a72;
+  font-size: 22px;
+}
+
+
+.app a.active {
+  color: red;
+}
