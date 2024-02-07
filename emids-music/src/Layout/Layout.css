@@ -8,12 +8,8 @@ body {
   font-size: 15px;
 }
 
-.menu {
-  width: 24%;
-}
-
 .app {
-  background: #a8d5e5;
+  background: #CCEAF6;
   position: fixed !important;
   height: 100vh;
 }
@@ -33,9 +29,13 @@ h1 {
 h2 {
   color: #165a72;
   font-size: 22px;
+  margin-top: 8px;
 }
 
+.main-div {
+  margin-left: 42vh;
+}
 
 .app a.active {
-  color: red;
+  color: #0FE4BD;
 }
