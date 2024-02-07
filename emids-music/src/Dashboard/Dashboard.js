@@ -1,18 +1,25 @@
 import React from 'react'
 import "./Dashboard.css"
 import { useState,useEffect } from 'react'
+import axios from 'axios';
 
 export default function Dashboard() {
   const [songs, setSongs] = useState([]);
 
   const getSongs = async() =>{
-   let apiData = await fetch("https://v1.nocodeapi.com/joshni/spotify/KIENvPniYiOvnjvq/search?q=trending&type=track");
-   let jsonApiData = await apiData.json();
-   console.log(jsonApiData);
-   setSongs(jsonApiData.tracks.items);
+    const {data} = await axios.get("https://deezerdevs-deezer.p.rapidapi.com/search", {
+      headers: {
+        'X-RapidAPI-Key': '1f098edf05msh22b8c9bc4a1753ep17ea78jsn2ab728790b37',
+        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
+      },
+      params: {q: 'trending'}
+  })
+   
+    setSongs(data.data);
+    console.log(data.data);
   }
   useEffect(() => {
-    //getSongs();
+    getSongs();
   }, []);
   return (
     <>
@@ -38,9 +45,9 @@ export default function Dashboard() {
             <div className="row">
             {
             songs.map((songsdata)=>{
-              return( <div key = {songsdata.id} className = "col">
+              return( <div key = {songsdata.album.id} className = "col">
                 <div className="card" style={{ width: "12rem" }}>
-                  <img src={songsdata.album.images[0].url} className="card-img-top" alt="..." />
+                  <img src={songsdata.album.cover_small} className="card-img-top" alt="..." />
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
                     <p className="card-text">

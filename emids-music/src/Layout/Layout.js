@@ -10,13 +10,13 @@ import { Routes, Route, Link, NavLink } from "react-router-dom";
 import Playlist from '../Playlist/Playlist';
 import UserProfile from '../UserProfile/UserProfile';
 import React from 'react';
-
+import Logo from '../emids-icon.png';
 function Layout() {
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <Sidebar className="app">
         <Menu>
-          <MenuItem className="menu1" component={<Link to="dashboard" className="link" />} icon={<MenuRoundedIcon />}>
+          <MenuItem className="menu1" component={<Link to="dashboard" className="link" />} icon={<img src={Logo}/>}>
             <h2>EMIDS MUSIC</h2>
           </MenuItem>
           <MenuItem icon={<GridViewRoundedIcon />} component={<NavLink to="dashboard" className="link"   />}> Dashboard </MenuItem>
