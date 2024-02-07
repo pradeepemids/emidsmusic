@@ -50,7 +50,7 @@ export default class Login extends React.Component {
             //const navigate = useNavigate();
             if (this.state.username === 'Emids Music' && this.state.password === "EmidsMusic") {
                 //navigate('/layout');
-                window.location.href = '/layout';
+                window.location.href = '/layout/dashboard';
             }
             else {
                 this.errors.error = true;
