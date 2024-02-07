@@ -1,7 +1,6 @@
 import './Layout.css';
 import Dashboard from '../Dashboard/Dashboard';
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
