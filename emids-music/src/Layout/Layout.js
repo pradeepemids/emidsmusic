@@ -14,7 +14,8 @@ import Songs from "../Playlist/Songs";
 
 function Layout() {
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div
+      style={{ display: "flex", height: "100%", backgroundColor: "#121212" }}>
       <Sidebar className="app">
         <Menu>
           <MenuItem

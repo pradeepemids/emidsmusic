@@ -1,16 +1,6 @@
-import { Circle } from "@mui/icons-material";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  CircularProgress,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import Album from "./Album";
-
-const albums = ["6461440", "6461440", "6461440", "6461440", "6461440"];
+import PlaylistTable from "./PlaylistTable";
 
 function Playlist() {
   const [playlist, setPlaylist] = useState();
@@ -42,24 +32,9 @@ function Playlist() {
   }, []);
 
   if (loading) {
-    return (
-      <>
-        <CircularProgress />
-      </>
-    );
+    return <CircularProgress />;
   } else {
-    return (
-      <div style={{ padding: "20px", width: "100%" }}>
-        <Grid container spacing={[16, 16]}>
-          {playlist?.tracks?.data.map((al) => (
-            <Grid item>
-              {" "}
-              <Album key={al.id} album={al} />
-            </Grid>
-          ))}
-        </Grid>
-      </div>
-    );
+    return <PlaylistTable playlist={playlist} />;
   }
 }
 
