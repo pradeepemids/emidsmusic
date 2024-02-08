@@ -1,7 +1,9 @@
 .main-dashboardBody {
-    background-color: #0A1172;
+    background-color: #121212;
     height: 100%;
+    padding-left: 10px;
 }
 .navbar {
-    background-color: #0A1172;
+    background-color: #121212;
+
 }

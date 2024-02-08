@@ -1,94 +1,84 @@
 import * as React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { useLocation } from "react-router-dom";
 import "./playlistStyles.css";
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const styles = (theme) => ({
-  tableRow: {
-    "&:hover": {
-      backgroundColor: "blue !important",
-    },
-  },
-});
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
+import "./../Dashboard/Dashboard.css";
+import { useEffect } from "react";
+import axios from "axios";
+import SongCard from "./../Shared/SongCard";
 
 export default function Songs() {
-  const [songsList, setSongsList] = React.useState();
-  const location = useLocation();
+  const [songs, setSongs] = React.useState([]);
 
-  console.log(location);
+  var songsData = null;
 
-  const getData = async () => {
-    const url = location.state;
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "737e6259admsh65458ca394fcb68p17eae4jsn1b6ed0f63593",
-        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
-      },
-    };
+  const getSongs = async () => {
+    const { data } = await axios.get(
+      "https://deezerdevs-deezer.p.rapidapi.com/search",
+      {
+        headers: {
+          "X-RapidAPI-Key":
+            "1f098edf05msh22b8c9bc4a1753ep17ea78jsn2ab728790b37",
+          "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+        },
+        params: { q: "trending" },
+      }
+    );
 
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      setSongsList(result);
-    } catch (error) {
-      console.error(error);
-    }
+    setSongs(data.data);
+    songsData = data.data;
   };
+  useEffect(() => {
+    getSongs();
+  }, []);
+
+  function setQ(data) {
+    console.log(data);
+  }
 
   return (
-    <TableContainer component={Paper}>
-      <Table
-        sx={{
-          minWidth: 650,
-          "& .MuiTableRow-root:hover": {
-            backgroundColor: "primary.light",
-          },
-        }}
-        aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <h1
+        style={{
+          color: "#fff",
+          align: "centre",
+          margin: "auto",
+          width: "18%",
+          padding: "10px",
+          paddingBottom: "50px",
+        }}>
+        Songs
+      </h1>
+
+      <nav className="navbar">
+        <div className="container-fluid ">
+          <div className="d-flex">
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              style={{ width: "900px" }}
+              onClick={(e) => setQ(e.target.value)}
+            />
+            <button
+              className="btn btn-outline-success"
+              type="submit"
+              style={{ color: "white" }}>
+              Search
+            </button>
+          </div>
+        </div>
+      </nav>
+      <div className="main-dashboardBody">
+        <div className="songs-dashboard" style={{ height: "100%" }}>
+          <div className="col">
+            <div className="row">
+              {songs.map((song, index) => {
+                return <SongCard key={index} songsdata={song} />;
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
