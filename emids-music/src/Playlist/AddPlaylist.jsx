@@ -25,6 +25,7 @@ const AddPlaylist = () => {
     const newEntry = {
       id: playlistData.playlists.length + 1,
       title: name,
+      genre: genre,
       image: "https://source.unsplash.com/user/c_v_r/1900x800",
       tracks: [
         {
