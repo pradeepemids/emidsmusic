@@ -48,8 +48,9 @@ export default class Login extends React.Component {
             }
         } else {
             //const navigate = useNavigate();
-            if (this.state.username === 'Emids Music' && this.state.password === "EmidsMusic") {
+            if (this.state.username.toLowerCase() === 'emidsmusic' && this.state.password === "EmidsMusic") {
                 //navigate('/layout');
+                localStorage.setItem('isUserActive', true);
                 window.location.href = '/layout/dashboard';
             }
             else {
