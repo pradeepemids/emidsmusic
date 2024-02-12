@@ -78,7 +78,7 @@ export default class Register extends React.Component {
             this.setState({ userNameErrorMsg: 'Please enter Username' });
         } else if (this.state.username.length < 5) {
             this.errors.username = true;
-            this.setState({ userNameErrorMsg: 'Username must have atleast 5 characters' });
+            this.setState({ userNameErrorMsg: 'Username must have at least 5 characters' });
         } else {
             this.errors.username = false;
             this.setState({ userNameErrorMsg: '' });
@@ -142,7 +142,7 @@ export default class Register extends React.Component {
             if (this.state.username && this.state.email && this.state.password && !this.errors.username && !this.errors.email && !this.errors.password) {
                 //navigate('/layout');
                 localStorage.setItem('isUserActive', true);
-                window.location.href = '/layout/dashboard';
+                window.location.href = '/';
             } else {
                 this.errors.username = false;
                 this.errors.email = false;
