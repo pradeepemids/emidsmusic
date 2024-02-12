@@ -72,6 +72,11 @@
                 .margin {
                     margin: 0;
                 }
+
+                .info {
+                    margin-bottom: 0.4rem;
+                    margin-left: 0.5rem;
+                }
             }
 
             .link {

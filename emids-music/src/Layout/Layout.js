@@ -13,6 +13,11 @@ import Logo from "../emids-icon.png";
 import Songs from "../Playlist/Songs";
 
 function Layout() {
+
+  const logout = () => {
+    localStorage.setItem('isUserActive', false);
+  }
+
   return (
     <div
       style={{ display: "flex", height: "100%", backgroundColor: "#121212" }}>
@@ -44,7 +49,7 @@ function Layout() {
           </MenuItem>
           <MenuItem
             icon={<LogoutRoundedIcon />}
-            component={<NavLink to="/" className="link" />}>
+            component={<NavLink to="/" className="link" onClick={logout} />}>
             {" "}
             Logout{" "}
           </MenuItem>
