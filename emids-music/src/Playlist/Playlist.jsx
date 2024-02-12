@@ -1,30 +1,27 @@
 import { CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import PlaylistTable from "./PlaylistTable";
+import playlistData from "./playlistData.json"; // Import the JSON file
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Playlist() {
-  const [playlist, setPlaylist] = useState();
+  const navigate = useNavigate();
+  const [playlistTest, setPlaylistTest] = useState();
   const [loading, setLoading] = useState(true);
+
+  const routeChange = () => {
+    let path = `/addPlaylist`;
+    navigate(path);
+  };
 
   const getData = async () => {
     setLoading(true);
-    const url = "https://deezerdevs-deezer.p.rapidapi.com/playlist/6461440";
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "737e6259admsh65458ca394fcb68p17eae4jsn1b6ed0f63593",
-        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
-      },
-    };
-
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      setPlaylist(result);
-    } catch (error) {
-      console.error(error);
-    }
-    setLoading(false);
+    setTimeout(() => {
+      setPlaylistTest(playlistData);
+      console.log(playlistTest);
+      setLoading(false);
+    }, 1); // Adjust timeout as per your requirement
   };
 
   useEffect(() => {
@@ -34,7 +31,22 @@ function Playlist() {
   if (loading) {
     return <CircularProgress />;
   } else {
-    return <PlaylistTable playlist={playlist} />;
+    return (
+      <>
+        <div>
+          <PlaylistTable playlist={playlistTest} />;
+        </div>
+        <div>
+          <button
+            color="primary"
+            style={{ marginLeft: "25px" }}
+            className="px-4 btn btn-primary "
+            onClick={routeChange}>
+            Add PlayList
+          </button>
+        </div>
+      </>
+    );
   }
 }
 

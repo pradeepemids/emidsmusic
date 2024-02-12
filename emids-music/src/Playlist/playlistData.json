@@ -1,0 +1,48 @@
+{
+  "playlists": [
+    {
+      "id": 1,
+      "title": "Playlist 1",
+      "genre": "Pop music",
+      "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
+      "tracks": [
+        {
+          "id": 1,
+          "title": "Track 1",
+          "artist": "Artist 1",
+          "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
+          "duration": "3:45"
+        },
+        {
+          "id": 2,
+          "title": "Track 2",
+          "artist": "Artist 2",
+          "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
+          "duration": "4:20"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Playlist 2",
+      "genre": "Rhythm and blues",
+      "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
+      "tracks": [
+        {
+          "id": 3,
+          "title": "Track 3",
+          "artist": "Artist 3",
+          "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
+          "duration": "5:10"
+        },
+        {
+          "id": 4,
+          "title": "Track 4",
+          "artist": "Artist 4",
+          "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
+          "duration": "4:00"
+        }
+      ]
+    }
+  ]
+}
