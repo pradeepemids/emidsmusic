@@ -42,7 +42,7 @@ export default class Register extends React.Component {
                 this.errors.username = true;
                 this.setState({ userNameErrorMsg: 'Username must have atleast 5 characters' });
             } else {
-                this.errors.username = true;
+                this.errors.username = false;
                 this.setState({ userNameErrorMsg: '' });
             }
         } else if (name === 'email') {
@@ -66,7 +66,7 @@ export default class Register extends React.Component {
                 this.errors.password = true;
                 this.setState({ passwordErrorMsg: 'Please enter a valid Password' });
             } else {
-                this.errors.password = true;
+                this.errors.password = false;
                 this.setState({ passwordErrorMsg: '' });
             }
         }
@@ -80,7 +80,7 @@ export default class Register extends React.Component {
             this.errors.username = true;
             this.setState({ userNameErrorMsg: 'Username must have atleast 5 characters' });
         } else {
-            this.errors.username = true;
+            this.errors.username = false;
             this.setState({ userNameErrorMsg: '' });
         }
     }
@@ -108,11 +108,11 @@ export default class Register extends React.Component {
         if (!this.state.password) {
             this.errors.password = true;
             this.setState({ passwordErrorMsg: 'Please enter Password' });
-        } else if (!this.state.email.match(isValidPassword)) {
+        } else if (!this.state.password.match(isValidPassword)) {
             this.errors.password = true;
             this.setState({ passwordErrorMsg: 'Please enter a valid Password' });
         } else {
-            this.errors.password = true;
+            this.errors.password = false;
             this.setState({ passwordErrorMsg: '' });
         }
     }
@@ -139,14 +139,14 @@ export default class Register extends React.Component {
             }
         } else {
             //const navigate = useNavigate();
-            if (this.state.username && this.state.password) {
+            if (this.state.username && this.state.email && this.state.password && !this.errors.username && !this.errors.email && !this.errors.password) {
                 //navigate('/layout');
                 localStorage.setItem('isUserActive', true);
                 window.location.href = '/layout/dashboard';
-            }
-            else {
-                this.errors.error = true;
-                this.setState({ errorMsg: 'Username or Password is wrong' });
+            } else {
+                this.errors.username = false;
+                this.errors.email = false;
+                this.errors.password = false;
             }
         }
     }
