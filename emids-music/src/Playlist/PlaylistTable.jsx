@@ -1,12 +1,4 @@
-import { Circle } from "@mui/icons-material";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  CircularProgress,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { CardMedia } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -18,6 +10,7 @@ import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
 
 function PlaylistTable({ playlist }) {
+  console.log(playlist);
   const navigate = useNavigate();
 
   return (
@@ -60,24 +53,27 @@ function PlaylistTable({ playlist }) {
             <TableHead>
               <TableRow>
                 <TableCell>Image</TableCell>
-                <TableCell align="right">Title</TableCell>
-                <TableCell align="right">Duration</TableCell>
+                <TableCell align="right">Playlist Name</TableCell>
+                <TableCell align="right">Genre</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {playlist?.tracks?.data.map((al) => (
+              {playlist.playlists.map((al) => (
                 <TableRow
                   key={al.id}
                   onClick={() =>
-                    navigate(`${al.album?.title}`, {
-                      state: al.album?.album?.tracklist,
+                    navigate(`${al?.title}`, {
+                      state: al?.title,
                     })
                   }
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                  <TableCell align="right" style={{ height: 50, width: 150 }}>
+                  <TableCell
+                    key={al.id}
+                    align="right"
+                    style={{ height: 50, width: 150 }}>
                     <CardMedia
                       sx={{ height: 50, width: 50 }}
-                      image={al?.album?.cover}
+                      image={al?.image}
                       title="green iguana"
                     />
                   </TableCell>
@@ -92,7 +88,7 @@ function PlaylistTable({ playlist }) {
                     key={al.id}
                     align="right"
                     style={{ height: 50, width: 150 }}>
-                    {al.duration}
+                    {al.genre}
                   </TableCell>
                 </TableRow>
               ))}
