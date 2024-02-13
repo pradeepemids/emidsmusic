@@ -4,6 +4,8 @@ import musicImg from "../music.jpg"
 import { Link } from "react-router-dom";
 import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 export default class Register extends React.Component {
     constructor(props) {
@@ -13,17 +15,20 @@ export default class Register extends React.Component {
             username: '',
             email: '',
             password: '',
+            confirmPassword: '',
             userNameErrorMsg: '',
             emailErrorMsg: '',
             passwordErrorMsg: '',
-            errorMsg: ''
+            confirmPasswordErrorMsg: '',
+            showPassword: false,
+            showConfirmPassword: false
         };
 
         this.errors = {
             username: false,
             email: false,
             password: false,
-            error: false
+            confirmPassword: false,
         };
     }
 
@@ -32,7 +37,6 @@ export default class Register extends React.Component {
         var value = event.target.value;
 
         this.setState({ [name]: value });
-        this.setState({ errorMsg: '' });
 
         if (name === 'username') {
             if (!value) {
@@ -57,7 +61,7 @@ export default class Register extends React.Component {
                 this.errors.email = false;
                 this.setState({ emailErrorMsg: '' });
             }
-        } else {
+        } else if (name === 'password') {
             const isValidPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
             if (!value) {
                 this.errors.password = true;
@@ -68,6 +72,17 @@ export default class Register extends React.Component {
             } else {
                 this.errors.password = false;
                 this.setState({ passwordErrorMsg: '' });
+            }
+        } else {
+            if (!value) {
+                this.errors.confirmPassword = true;
+                this.setState({ confirmPasswordErrorMsg: 'Please enter Confirm Password' });
+            } else if (value !== this.state.password) {
+                this.errors.confirmPassword = true;
+                this.setState({ confirmPasswordErrorMsg: 'Please enter the same Password' });
+            } else {
+                this.errors.confirmPassword = false;
+                this.setState({ confirmPasswordErrorMsg: '' });
             }
         }
     }
@@ -100,10 +115,6 @@ export default class Register extends React.Component {
     }
 
     validatePasswordInput = () => {
-        // At least 8 characters
-        // At least one uppercase letter
-        // At least one lowercase letter
-        // At least one number
         const isValidPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
         if (!this.state.password) {
             this.errors.password = true;
@@ -117,6 +128,27 @@ export default class Register extends React.Component {
         }
     }
 
+    validateConfirmPasswordInput = () => {
+        if (!this.state.confirmPassword) {
+            this.errors.confirmPassword = true;
+            this.setState({ confirmPasswordErrorMsg: 'Please enter Confirm Password' });
+        } else if (this.state.confirmPassword !== this.state.password) {
+            this.errors.confirmPassword = true;
+            this.setState({ passwordErrorMsg: 'Please enter the same Password' });
+        } else {
+            this.errors.confirmPassword = false;
+            this.setState({ confirmPasswordErrorMsg: '' });
+        }
+    };
+
+    setShowPassword = () => {
+        this.setState({ showPassword: !this.state.showPassword });
+    }
+
+    setShowConfirmPassword = () => {
+        this.setState({ showConfirmPassword: !this.state.showConfirmPassword });
+    }
+
     handleKeyDown = (e) => {
         if (e.key === " ") {
             e.preventDefault();
@@ -124,7 +156,7 @@ export default class Register extends React.Component {
     }
 
     handleSubmit = () => {
-        if (!this.state.username || !this.state.email || !this.state.password) {
+        if (!this.state.username || !this.state.email || !this.state.password || !this.state.confirmPassword) {
             if (!this.state.username) {
                 this.errors.username = true;
                 this.setState({ userNameErrorMsg: 'Please enter Username' });
@@ -137,23 +169,27 @@ export default class Register extends React.Component {
                 this.errors.password = true;
                 this.setState({ passwordErrorMsg: 'Please enter Password' });
             }
+            if (!this.state.confirmPassword) {
+                this.errors.password = true;
+                this.setState({ confirmPasswordErrorMsg: 'Please enter Confirm Password' });
+            }
         } else {
             //const navigate = useNavigate();
-            if (this.state.username && this.state.email && this.state.password && !this.errors.username && !this.errors.email && !this.errors.password) {
+            if (this.state.username && this.state.email && this.state.password && this.state.confirmPassword && !this.errors.username && !this.errors.email && !this.errors.password && !this.errors.confirmPassword) {
                 //navigate('/layout');
-                localStorage.setItem('isUserActive', true);
                 window.location.href = '/';
             } else {
                 this.errors.username = false;
                 this.errors.email = false;
                 this.errors.password = false;
+                this.errors.confirmPassword = false
             }
         }
     }
 
     render() {
         return (
-            <div className="login">
+            <div className="register-login">
                 <div>
                     <div className="base-container">
                         <div>
@@ -180,12 +216,22 @@ export default class Register extends React.Component {
                                                 <InfoOutlinedIcon />
                                             </Tooltip>
                                         </div>
-
-                                        <input type="password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} onKeyDown={this.handleKeyDown} onBlur={this.validatePasswordInput} />
+                                        <div>
+                                            <input type={this.state.showPassword ? 'text' : 'password'} name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} onKeyDown={this.handleKeyDown} onBlur={this.validatePasswordInput} />
+                                            <button className="eye" onClick={this.setShowPassword}>{this.state.showPassword ? <VisibilityOffOutlinedIcon /> : <VisibilityOutlinedIcon />}</button>
+                                        </div>
                                         <span className="error-msg">{this.errors.password && <span>{this.state.passwordErrorMsg}</span>}</span>
                                     </div>
                                     <div className="error-msg">
                                         {this.errors.error && <span>{this.state.errorMsg}</span>}
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="confirmPassword">Confirm Password</label>
+                                        <div>
+                                            <input type={this.state.showConfirmPassword ? 'text' : 'password'} name="confirmPassword" value={this.state.confirmPassword} placeholder="Confirm Password" onChange={this.handleInputChange} onKeyDown={this.handleKeyDown} onBlur={this.validateConfirmPasswordInput} />
+                                            <button className="eye" onClick={this.setShowConfirmPassword}>{this.state.showConfirmPassword ? <VisibilityOffOutlinedIcon /> : <VisibilityOutlinedIcon />}</button>
+                                        </div>
+                                        <span className="error-msg">{this.errors.confirmPassword && <span>{this.state.confirmPasswordErrorMsg}</span>}</span>
                                     </div>
                                 </div>
                                 <div className="link">

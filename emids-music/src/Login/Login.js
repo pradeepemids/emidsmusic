@@ -2,6 +2,7 @@ import React from "react";
 import "./RegisterLogin.css"
 import musicImg from "../music.jpg"
 import { Link } from "react-router-dom";
+import users from "./users.json";
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -48,9 +49,30 @@ export default class Login extends React.Component {
             }
         } else {
             //const navigate = useNavigate();
-            if (this.state.username.toLowerCase() === 'emidsmusic' && this.state.password === "EmidsMusic") {
+            if (users.find(user => user.username === this.state.username && user.password === this.state.password)) {
                 //navigate('/layout');
-                localStorage.setItem('isUserActive', true);
+                const activeUser = {
+                    email: users.find(user => user.username === this.state.username && user.password === this.state.password).email,
+                    isActive: true
+                }
+                const currentUser = activeUser.email;
+                localStorage.setItem('currentUser', currentUser);
+                let activeUsers = JSON.parse(localStorage.getItem('activeUser'));
+                if (!activeUsers) {
+                    activeUsers = [];
+                    activeUsers.push(activeUser);
+                    localStorage.setItem('activeUser', JSON.stringify(activeUsers));
+                } else {
+                    const active = JSON.parse(localStorage.getItem('activeUser'));
+                    const index = active.findIndex(user => user.email === localStorage.getItem('currentUser'));
+                    if (index !== -1) {
+                        active[index].isActive = true;
+                        localStorage.setItem('activeUser', JSON.stringify(active));
+                    } else {
+                        activeUsers.push(activeUser);
+                        localStorage.setItem('activeUser', JSON.stringify(activeUsers));
+                    }
+                }
                 window.location.href = '/layout/dashboard';
             }
             else {
@@ -62,7 +84,7 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <div className="login">
+            <div className="register-login">
                 <div>
                     <div className="base-container">
                         <div>
