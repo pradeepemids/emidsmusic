@@ -11,12 +11,12 @@ import UserProfile from "../UserProfile/UserProfile";
 import React from "react";
 import Logo from "../emids-icon.png";
 import Songs from "../Playlist/Songs";
+import Test from "../Playlist/AddPlaylist";
 
 function Layout() {
-
   const logout = () => {
-    localStorage.setItem('isUserActive', false);
-  }
+    localStorage.setItem("isUserActive", false);
+  };
 
   return (
     <div
@@ -60,7 +60,8 @@ function Layout() {
           <Route path="/" element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="playlist" element={<Playlist />} />
-          <Route path="playlist/*" element={<Songs />} />
+          <Route path="playlist/song" element={<Songs />} />
+          <Route path="playlist/add-playlist" element={<Test />} />
           <Route path="profile" element={<UserProfile />} />
         </Routes>
       </div>
