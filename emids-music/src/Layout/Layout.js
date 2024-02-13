@@ -11,7 +11,7 @@ import UserProfile from "../UserProfile/UserProfile";
 import React from "react";
 import Logo from "../emids-icon.png";
 import Songs from "../Playlist/Songs";
-import Test from "../Playlist/AddPlaylist";
+import AddPlayList from "../Playlist/AddPlaylist";
 
 function Layout() {
   const activeUser = JSON.parse(localStorage.getItem("activeUser"));
@@ -70,7 +70,7 @@ function Layout() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="playlist" element={<Playlist />} />
             <Route path="playlist/song" element={<Songs />} />
-            <Route path="playlist/add-playlist" element={<PlayList />} />
+            <Route path="playlist/add-playlist" element={<AddPlayList />} />
             <Route path="profile" element={<UserProfile />} />
           </Routes>
         </div>

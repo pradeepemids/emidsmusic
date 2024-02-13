@@ -144,7 +144,7 @@ function AddPlaylist() {
           <div className="alert alert-danger">{errorMessage}</div>
         )}
         <button type="submit" className="btn btn-primary neon-hover">
-          Submit
+          Add
         </button>
       </form>
     </div>
