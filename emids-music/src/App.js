@@ -7,7 +7,6 @@ import Register from "./Login/Register";
 import AddPlaylist from "././Playlist/AddPlaylist";
 
 function App() {
-  //const isUserActive = localStorage.getItem('isUSerActive');
 
   return (
     <Routes>
