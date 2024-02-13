@@ -10,11 +10,6 @@ function Playlist() {
   const [playlistTest, setPlaylistTest] = useState();
   const [loading, setLoading] = useState(true);
 
-  const routeChange = () => {
-    let path = `/addPlaylist`;
-    navigate(path);
-  };
-
   const getData = async () => {
     setLoading(true);
     setTimeout(() => {
@@ -36,7 +31,7 @@ function Playlist() {
         <div>
           <PlaylistTable playlist={playlistTest} />;
         </div>
-        <div>
+        {/* <div>
           <button
             color="primary"
             style={{ marginLeft: "25px" }}
@@ -44,7 +39,7 @@ function Playlist() {
             onClick={routeChange}>
             Add PlayList
           </button>
-        </div>
+        </div> */}
       </>
     );
   }

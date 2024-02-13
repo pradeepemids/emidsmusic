@@ -11,23 +11,25 @@ import UserProfile from "../UserProfile/UserProfile";
 import React from "react";
 import Logo from "../emids-icon.png";
 import Songs from "../Playlist/Songs";
+import AddPlayList from "../Playlist/AddPlaylist";
 
 function Layout() {
-  const activeUser = JSON.parse(localStorage.getItem('activeUser'));
-  const index = activeUser.findIndex(user => user.email === localStorage.getItem('currentUser'));
+  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+  const index = activeUser.findIndex(
+    (user) => user.email === localStorage.getItem("currentUser")
+  );
 
   const logout = () => {
     activeUser[index].isActive = false;
-    localStorage.setItem('activeUser', JSON.stringify(activeUser));
-  }
+    localStorage.setItem("activeUser", JSON.stringify(activeUser));
+  };
 
   if (index === -1 || !activeUser[index].isActive) {
-    window.location.href = '/';
+    window.location.href = "/";
   } else {
     return (
-      < div
-        style={{ display: "flex", height: "100%", backgroundColor: "#121212" }
-        }>
+      <div
+        style={{ display: "flex", height: "100%", backgroundColor: "#121212" }}>
         <Sidebar className="app">
           <Menu>
             <MenuItem
@@ -67,11 +69,12 @@ function Layout() {
             <Route path="/" element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="playlist" element={<Playlist />} />
-            <Route path="playlist/*" element={<Songs />} />
+            <Route path="playlist/song" element={<Songs />} />
+            <Route path="playlist/add-playlist" element={<AddPlayList />} />
             <Route path="profile" element={<UserProfile />} />
           </Routes>
         </div>
-      </div >
+      </div>
     );
   }
 }

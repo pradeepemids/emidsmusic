@@ -1,5 +1,5 @@
 import { CardMedia } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,12 +10,17 @@ import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
 
 function PlaylistTable({ playlist }) {
-  console.log(playlist);
   const navigate = useNavigate();
 
   return (
     <>
-      <div style={{ paddingLeft: "25px", paddingTop: "10px", width: "100%" }}>
+      <div
+        className="mb-3"
+        style={{
+          paddingLeft: "25px",
+          paddingTop: "10px",
+          width: "100%",
+        }}>
         <h1
           style={{
             color: "#fff",
@@ -39,14 +44,14 @@ function PlaylistTable({ playlist }) {
               minWidth: 1000,
               "& .MuiTableRow-root": {
                 backgroundColor: "#292929",
+                transition: "background-color 0.3s", // Add transition for smooth color change
+                "&:hover": {
+                  backgroundColor: "#535353", // Change background color on hover
+                },
               },
-              "&  .MuiTableCell-root": {
+              "& .MuiTableCell-root": {
                 color: "#fff",
                 borderBlock: "none",
-              },
-              "& .MuiTableRow-root:hover": {
-                backgroundColor: "#535353",
-                cursor: "pointer",
               },
             }}
             aria-label="simple table">
@@ -62,7 +67,7 @@ function PlaylistTable({ playlist }) {
                 <TableRow
                   key={al.id}
                   onClick={() =>
-                    navigate(`${al?.title}`, {
+                    navigate(`song`, {
                       state: al?.title,
                     })
                   }
@@ -77,7 +82,6 @@ function PlaylistTable({ playlist }) {
                       title="green iguana"
                     />
                   </TableCell>
-
                   <TableCell
                     key={al.id}
                     align="right"
@@ -96,6 +100,14 @@ function PlaylistTable({ playlist }) {
           </Table>
         </TableContainer>
       </div>
+
+      <button
+        color="primary"
+        style={{ marginLeft: "25px" }}
+        className="px-4 btn btn-success "
+        onClick={() => navigate(`add-playlist`)}>
+        Add Playlist
+      </button>
     </>
   );
 }
