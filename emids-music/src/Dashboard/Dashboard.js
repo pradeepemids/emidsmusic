@@ -7,7 +7,7 @@ import ApiManager from "../Shared/ApiManager";
 
 export default function Dashboard() {
   const [songs, setSongs] = useState([]);
-
+  const [seachText, setSearchText] = useState("");
   const getSongs = (searchInput) => {
     ApiManager.getSongs(searchInput).then((result) => {
       console.log('result from API ====>', result)
@@ -17,17 +17,23 @@ export default function Dashboard() {
   useEffect(() => {
     getSongs("trending");
   }, []);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    getSongs(seachText);
+  }
   return (
     <>
       <nav className="navbar">
         <div className="container-fluid">
-          <form className="d-flex" role="search">
+          <form className="d-flex" role="search" onSubmit={handleSearch}>
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
               style={{ width: "900px" }}
+              onChange={(e) => setSearchText(e.target.value)}
             />
             <button
               className="btn btn-outline-success"
