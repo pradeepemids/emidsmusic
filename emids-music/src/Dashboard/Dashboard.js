@@ -3,28 +3,19 @@ import "./Dashboard.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SongCard from "./../Shared/SongCard";
+import ApiManager from "../Shared/ApiManager";
 
 export default function Dashboard() {
   const [songs, setSongs] = useState([]);
 
-  const getSongs = async () => {
-    const { data } = await axios.get(
-      "https://deezerdevs-deezer.p.rapidapi.com/search",
-      {
-        headers: {
-          "X-RapidAPI-Key":
-            "1f098edf05msh22b8c9bc4a1753ep17ea78jsn2ab728790b37",
-          "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
-        },
-        params: { q: "trending" },
-      }
-    );
-
-    setSongs(data.data);
-    console.log(data.data);
+  const getSongs = (searchInput) => {
+    ApiManager.getSongs(searchInput).then((result) => {
+      console.log('result from API ====>', result)
+      setSongs(result);
+  });
   };
   useEffect(() => {
-    getSongs();
+    getSongs("trending");
   }, []);
   return (
     <>
