@@ -1,9 +1,33 @@
-.main-dashboardBody {
-    background-color: #121212;
-    height: 100%;
-    padding-left: 10px;
+.container-fluid{
+    padding-top: 20px;
+    background:"#0A1172";
+    padding-left: 0;
 }
-.navbar {
-    background-color: #121212;
 
+.form-control {
+    width: 650px;
+}
+
+.main-dashboardBody {
+    background-color: #0A1172;
+    height: 100%;
+    margin-top: 0%;
+}
+
+.songs-dashboard{
+    height: 100%;
+    background-color: #0A1172;
+}
+
+.Trending-Txt {
+    padding-top: 20px;
+    color: white;
+    text-align: left;
+    font-size: 30px;
+    padding-bottom: 0%;
+}
+
+.col {
+    margin-bottom: 30px;
+    background-color: #0A1172;
 }

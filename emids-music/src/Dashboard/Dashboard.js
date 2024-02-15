@@ -12,34 +12,30 @@ export default function Dashboard() {
     ApiManager.getSongs(searchInput).then((result) => {
       console.log('result from API ====>', result)
       setSongs(result);
-  });
+    });
   };
   useEffect(() => {
     getSongs("trending");
   }, []);
   return (
-    <>
-      <nav className="navbar">
-        <div className="container-fluid">
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              style={{ width: "900px" }}
-            />
-            <button
-              className="btn btn-outline-success"
-              type="submit"
-              style={{ color: "white" }}>
-              Search
-            </button>
-          </form>
-        </div>
-      </nav>
+    <div className="dashboard-container">
+      <div className="container-fluid" style={{ background: "#0A1172" }}>
+        <form className="d-flex" role="search">
+          <input
+            className="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button className="btn btn-outline-success" type="submit" style={{ color: "white" }}>
+            Search
+          </button>
+        </form>
+      </div>
+
       <div className="main-dashboardBody">
-        <div className="songs-dashboard" style={{ height: "100%" }}>
+        <div className="songs-dashboard">
+        <p className="Trending-Txt">Trending Songs</p>
           <div className="col">
             <div className="row">
               {songs.map((song, index) => {
@@ -70,6 +66,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
