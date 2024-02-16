@@ -26,7 +26,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="container-fluid" style={{ background: "#0A1172" }}>
-        <form className="d-flex" role="search"  onSubmit={handleSearch}>
+        <form className="d-flex" role="search" aria-label="search-form" onSubmit={handleSearch}>
           <input
             className="form-control me-2"
             type="search"
