@@ -2,7 +2,7 @@ import React from "react";
 import "./RegisterLogin.css"
 import musicImg from "../music.jpg"
 import { Link } from "react-router-dom";
-import users from "./users.json";
+import ApiManager from "../Shared/ApiManager";
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -37,22 +37,13 @@ export default class Login extends React.Component {
         };
     }
 
-    handleSubmit = () => {
-        if (!this.state.username || !this.state.password) {
-            if (!this.state.username) {
-                this.errors.username = true;
-                this.setState({ userNameErrorMsg: 'Please enter Username' });
-            }
-            if (!this.state.password) {
-                this.errors.password = true;
-                this.setState({ passwordErrorMsg: 'Please enter Password' });
-            }
-        } else {
+    validateUserCredentials = () => {
+        ApiManager.validateCredentials(this.state).then(email => {
             //const navigate = useNavigate();
-            if (users.find(user => user.username === this.state.username && user.password === this.state.password)) {
+            if (email) {
                 //navigate('/layout');
                 const activeUser = {
-                    email: users.find(user => user.username === this.state.username && user.password === this.state.password).email,
+                    email: email,
                     isActive: true
                 }
                 const currentUser = activeUser.email;
@@ -79,6 +70,21 @@ export default class Login extends React.Component {
                 this.errors.error = true;
                 this.setState({ errorMsg: 'Username or Password is wrong' });
             }
+        })
+    }
+
+    handleSubmit = () => {
+        if (!this.state.username || !this.state.password) {
+            if (!this.state.username) {
+                this.errors.username = true;
+                this.setState({ userNameErrorMsg: 'Please enter Username' });
+            }
+            if (!this.state.password) {
+                this.errors.password = true;
+                this.setState({ passwordErrorMsg: 'Please enter Password' });
+            }
+        } else {
+            this.validateUserCredentials();
         }
     }
 
