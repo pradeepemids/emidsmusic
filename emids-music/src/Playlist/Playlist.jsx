@@ -29,7 +29,7 @@ function Playlist() {
     return (
       <>
         <div>
-          <PlaylistTable playlist={playlistTest} />;
+          <PlaylistTable />;
         </div>
         {/* <div>
           <button

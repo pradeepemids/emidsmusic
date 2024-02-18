@@ -1,63 +1,136 @@
-import React, { useState } from "react";
-import "./AddPlaylist.css"; // Import custom CSS for styling
-import playlistData from "./playlistData.json"; // Import the JSON file
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import "./AddPlaylist.css";
+import playlistData from "./playlistData.json";
+import { useNavigate, useLocation } from "react-router-dom";
 
-function AddPlaylist() {
+function AddPlaylist({}) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state;
+  // console.log(location.state);
+  const getPrefilledData = () => {
+    const matchingPlaylist = playlistData.playlists.find(
+      (playlist) => playlist.id === state
+    );
+    // console.log("matchingPlaylist.genre", matchingPlaylist.genre);
+    return matchingPlaylist
+      ? {
+          playlistName: matchingPlaylist.title,
+          genre: matchingPlaylist.genre,
+          song: [],
+          coverImage: matchingPlaylist.image,
+        }
+      : {
+          playlistName: "",
+          genre: "",
+          song: [],
+          coverImage: "",
+        };
+  };
 
-  const [formData, setFormData] = useState({
-    playlistName: "",
-    genre: "",
-    song: "",
-    description: "",
-    coverImage: "",
-  });
-
+  const [formData, setFormData] = useState(getPrefilledData());
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [tracks, setTracks] = useState([]); // State to hold tracks extracted from JSON
-  const [selectedTrack, setSelectedTrack] = useState(null); // State to hold selected track
+  const [genres, setGenres] = useState(null);
+  const [songs, setSongs] = useState([]);
+  console.log(formData, "formData");
+  let test122 = null;
+  if (!!genres) {
+    console.log(genres, "genres");
+    let test122 = genres.filter((x) => x.genre == formData.genre)[0]?.id;
+    console.log("test122", test122);
+  }
 
   const handleInputChange = (event) => {
-    console.log(event.target);
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, options } = event.target;
+    if (!options) {
+      setFormData({ ...formData, [name]: value });
+      return;
+    }
+
+    const selectedSongs = Array.from(options)
+      .filter((option) => option.selected)
+      .map((option) => ({
+        id: option.value,
+        title: option.text,
+      }));
+
+    setFormData({ ...formData, [name]: selectedSongs });
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent page reload
-    const { playlistName, genre, song, description, coverImage } = formData;
-    if (!playlistName || !genre || !song) {
+    event.preventDefault();
+    const { playlistName, genre, song, coverImage } = formData;
+    if (!playlistName || !genre || !song.length) {
       setSuccessMessage(null);
-      setErrorMessage("Please provide both playlist name and genre.");
+      setErrorMessage("Please provide both playlist name, genre, and song.");
       return;
     }
     const newEntry = {
-      id: playlistData.playlists.length + 1,
+      id: !!state ? Number(state) : playlistData.playlists.length + 1,
       title: playlistName,
-      genre: genre,
-      image: "https://source.unsplash.com/user/c_v_r/1900x800",
-      tracks: [
-        {
-          id: 1,
-          title: "Track 1",
-          artist: "Artist 1",
-          image: "https://source.unsplash.com/user/c_v_r/1900x800",
-          duration: "3:45",
-        },
-      ],
+      genre: genre[0].title,
+      image:
+        coverImage ||
+        "https://pixabay.com/photos/guitar-player-music-guitarist-5043613/",
+      tracks: song.map((selectedSong, index) => ({
+        id: index + 1,
+        title: selectedSong.title,
+        artist: "Artist",
+        image:
+          coverImage ||
+          "https://pixabay.com/photos/guitar-player-music-guitarist-5043613/",
+        duration: "3:45",
+      })),
     };
 
-    playlistData.playlists.push(newEntry);
+    if (!!state) {
+      let updatedArray = playlistData.playlists.map((obj) => {
+        if (obj.id == state) {
+          return newEntry;
+        } else {
+          return obj;
+        }
+      });
+      playlistData.playlists = updatedArray;
+    } else {
+      playlistData.playlists.push(newEntry);
+    }
     setSuccessMessage("Playlist added successfully!");
     setErrorMessage(null);
-
-    setFormData({ name: "", genre: "", songs: "" });
-    console.log(playlistData);
-
+    setFormData({
+      playlistName: "",
+      genre: "",
+      song: [],
+      coverImage: "",
+    });
     navigate(-1);
   };
+
+  const getGenres = () => {
+    const genresWithIds = playlistData.playlists.map((playlist) => ({
+      id: playlist.id,
+      genre: playlist.genre,
+    }));
+    setGenres(genresWithIds);
+  };
+
+  const getAllSongs = () => {
+    const allSongs = playlistData.playlists.reduce((acc, playlist) => {
+      return acc.concat(
+        playlist.tracks.map((track) => ({
+          id: track.id,
+          title: track.title,
+        }))
+      );
+    }, []);
+    setSongs(allSongs);
+  };
+
+  useEffect(() => {
+    getGenres();
+    getAllSongs();
+  }, []);
 
   return (
     <div className="container">
@@ -88,45 +161,40 @@ function AddPlaylist() {
             className="form-control"
             id="genre"
             name="genre"
-            value={formData.genre}
-            onChange={handleInputChange}
-            required>
+            value={formData.genre.id}
+            onChange={(event) => handleInputChange(event)}>
             <option value="">Select a genre</option>
-            <option value="pop">Pop</option>
-            <option value="rock">Rock</option>
-            <option value="hiphop">Hip Hop</option>
-            <option value="jazz">Jazz</option>
+            {genres &&
+              genres.map((genreItem) => {
+                return (
+                  <option key={genreItem.id} value={genreItem.id}>
+                    {genreItem.genre}
+                  </option>
+                );
+              })}
           </select>
         </div>
+
         <div className="form-group mb-3">
           <label htmlFor="song" style={{ color: "white" }}>
-            Add Song<span style={{ color: "red" }}>*</span>:
+            Songs<span style={{ color: "red" }}>*</span>:
           </label>
           <select
             className="form-control"
             id="song"
             name="song"
-            value={formData.song}
-            onChange={handleInputChange}
-            required>
+            value={formData.song.title}
+            onChange={handleInputChange}>
             <option value="">Select a song</option>
-            <option value="song1">Song 1</option>
-            <option value="song2">Song 2</option>
-            <option value="song3">Song 3</option>
+            {songs &&
+              songs.map((songItem) => (
+                <option key={songItem.id} value={songItem.id}>
+                  {songItem.title}
+                </option>
+              ))}
           </select>
         </div>
-        <div className="form-group mb-3">
-          <label htmlFor="description" style={{ color: "white" }}>
-            Description:
-          </label>
-          <textarea
-            className="form-control"
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-          />
-        </div>
+
         <div className="form-group mb-3">
           <label htmlFor="coverImage" style={{ color: "white" }}>
             Cover Image URL:

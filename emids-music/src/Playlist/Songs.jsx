@@ -4,11 +4,15 @@ import "./../Dashboard/Dashboard.css";
 import { useEffect } from "react";
 import axios from "axios";
 import SongCard from "./../Shared/SongCard";
+import { useLocation } from "react-router-dom";
 
 export default function Songs() {
   const [songs, setSongs] = React.useState([]);
 
   var songsData = null;
+  const location = useLocation();
+  const state = location.state;
+  console.log(state);
 
   const getSongs = async () => {
     const { data } = await axios.get(
