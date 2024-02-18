@@ -29,7 +29,7 @@ function Layout() {
   } else {
     return (
       <div
-        style={{ display: "flex", height: "100%", backgroundColor: "#121212" }}>
+        style={{ display: "flex", height: "100%", background: "#0A1172" }}>
         <Sidebar className="app">
           <Menu>
             <MenuItem

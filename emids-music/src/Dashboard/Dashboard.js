@@ -3,52 +3,46 @@ import "./Dashboard.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SongCard from "./../Shared/SongCard";
+import ApiManager from "../Shared/ApiManager";
 
 export default function Dashboard() {
   const [songs, setSongs] = useState([]);
-
-  const getSongs = async () => {
-    const { data } = await axios.get(
-      "https://deezerdevs-deezer.p.rapidapi.com/search",
-      {
-        headers: {
-          "X-RapidAPI-Key":
-            "1f098edf05msh22b8c9bc4a1753ep17ea78jsn2ab728790b37",
-          "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
-        },
-        params: { q: "trending" },
-      }
-    );
-
-    setSongs(data.data);
-    console.log(data.data);
+  const [seachText, setSearchText] = useState("");
+  const getSongs = (searchInput) => {
+    ApiManager.getSongs(searchInput).then((result) => {
+      console.log('result from API ====>', result)
+      setSongs(result);
+    });
   };
   useEffect(() => {
-    getSongs();
+    getSongs("trending");
   }, []);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    getSongs(seachText);
+  }
+
   return (
-    <>
-      <nav className="navbar">
-        <div className="container-fluid">
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              style={{ width: "900px" }}
-            />
-            <button
-              className="btn btn-outline-success"
-              type="submit"
-              style={{ color: "white" }}>
-              Search
-            </button>
-          </form>
-        </div>
-      </nav>
+    <div className="dashboard-container">
+      <div className="container-fluid" style={{ background: "#0A1172" }}>
+        <form className="d-flex" role="search" aria-label="search-form" onSubmit={handleSearch}>
+          <input
+            className="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <button className="btn btn-outline-success" type="submit" style={{ color: "white" }}>
+            Search
+          </button>
+        </form>
+      </div>
+
       <div className="main-dashboardBody">
-        <div className="songs-dashboard" style={{ height: "100%" }}>
+        <div className="songs-dashboard">
+        <p className="Trending-Txt">Trending Songs</p>
           <div className="col">
             <div className="row">
               {songs.map((song, index) => {
@@ -79,6 +73,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
