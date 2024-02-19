@@ -11,15 +11,6 @@
             color: #fff;
         }
 
-        table {
-            border-collapse: separate;
-            border-spacing: 50px 0;
-          }
-          
-          td {
-            padding: 5px 0;
-          }
-
         .profile {
             width: 100%;
             display: flex;
@@ -30,19 +21,51 @@
 
         .content {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
 
-            .form {
+            .userinfo {
                 margin-top: 2em;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                font-size: 16px;
+                font-family: "Open Sans", sans-serif;
+                color: #23c785;
+
+                .image-cropper {
+                    width: 100px;
+                    height: 100px;
+                    position: relative;
+                    overflow: hidden;
+                    border-radius: 50%;
+                  }
+                  
+                  img {
+                    display: inline;
+                    margin: 0 auto;
+                    height: 100%;
+                    width: auto;
+                  }
+
+                .username {
+                    font-weight: bold;
+                }
+            }
+
+            .form {
+                margin-top: 2em;
+                display: flex;
+                flex-direction: row;
+                align-items:flex-start;
+                flex-flow:wrap;
+                justify-items: center;
 
                 .form-group {
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
                     width: fit-content;
+                    margin-left: 20px;
                     margin-bottom: 10px;
 
                     label {
@@ -70,24 +93,6 @@
                 .margin {
                     margin: 0;
                 }
-
-                .info {
-                    margin-bottom: 0.4rem;
-                    margin-left: 0.5rem;
-                }
-            }
-
-            .link {
-                text-align: right;
-
-                .link-color {
-                    color: mediumspringgreen;
-                }
-            }
-
-            .eye {
-                margin-left: -2.5rem;
-                border: none;
             }
         }
 
@@ -105,11 +110,6 @@
             width: 100%;
             font-size: 20px;
             color: orange;
-            margin: 2px;
-        }
-
-        .error-msg {
-            color: mediumspringgreen;
             margin: 2px;
         }
     }
