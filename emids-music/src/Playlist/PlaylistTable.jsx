@@ -24,7 +24,7 @@ function PlaylistTable({ playlist }) {
         <h1
           style={{
             color: "#fff",
-            align: "centre",
+            align: "center",
             margin: "auto",
             width: "18%",
             padding: "10px",
@@ -34,23 +34,23 @@ function PlaylistTable({ playlist }) {
         </h1>
         <TableContainer
           style={{
-            backgroundColor: "#292929",
-            color: "#fff",
+            backgroundColor: "#ECF5F8",
+            color: "#165A72",
             borderRadius: "10px",
           }}
           component={Paper}>
           <Table
             sx={{
-              minWidth: 1000,
+              minWidth: 900,
               "& .MuiTableRow-root": {
-                backgroundColor: "#292929",
+                backgroundColor: "#ECF5F8",
                 transition: "background-color 0.3s", // Add transition for smooth color change
                 "&:hover": {
-                  backgroundColor: "#535353", // Change background color on hover
+                  backgroundColor: "#0FE4BD", // Change background color on hover
                 },
               },
               "& .MuiTableCell-root": {
-                color: "#fff",
+                color: "#165A72",
                 borderBlock: "none",
               },
             }}
@@ -58,8 +58,8 @@ function PlaylistTable({ playlist }) {
             <TableHead>
               <TableRow>
                 <TableCell>Image</TableCell>
-                <TableCell align="right">Playlist Name</TableCell>
-                <TableCell align="right">Genre</TableCell>
+                <TableCell align="left">Playlist Name</TableCell>
+                <TableCell align="left">Genre</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -74,7 +74,7 @@ function PlaylistTable({ playlist }) {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                   <TableCell
                     key={al.id}
-                    align="right"
+                    align="left"
                     style={{ height: 50, width: 150 }}>
                     <CardMedia
                       sx={{ height: 50, width: 50 }}
@@ -84,13 +84,13 @@ function PlaylistTable({ playlist }) {
                   </TableCell>
                   <TableCell
                     key={al.id}
-                    align="right"
+                    align="left"
                     style={{ height: 50, width: 150 }}>
                     {al.title}
                   </TableCell>
                   <TableCell
                     key={al.id}
-                    align="right"
+                    align="left"
                     style={{ height: 50, width: 150 }}>
                     {al.genre}
                   </TableCell>
@@ -103,7 +103,7 @@ function PlaylistTable({ playlist }) {
 
       <button
         color="primary"
-        style={{ marginLeft: "25px" }}
+        style={{ marginLeft: "25px", background: "#23c785" }}
         className="px-4 btn btn-success "
         onClick={() => navigate(`add-playlist`)}>
         Add Playlist

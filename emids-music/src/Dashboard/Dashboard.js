@@ -34,7 +34,7 @@ export default function Dashboard() {
             aria-label="Search"
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <button className="btn btn-outline-success" type="submit" style={{ color: "white" }}>
+          <button className="btn btn-outline-success" type="submit" style={{ color: "white", background: "#23c785" }}>
             Search
           </button>
         </form>
