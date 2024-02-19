@@ -41,16 +41,26 @@ function PlaylistTable({ playlist }) {
           component={Paper}>
           <Table
             sx={{
-              minWidth: 900,
+              minWidth: 950,
               "& .MuiTableRow-root": {
+                backgroundColor: "#23c785",
+                transition: "background-color 0.3s", // Add transition for smooth color change
+                },
+              "& .MuiTableCell-root": {
+                color: "#ffff",
+                fontWeight:"600",
+                borderBlock: "none",
+              },
+              "& tbody .MuiTableRow-root": {
                 backgroundColor: "#ECF5F8",
                 transition: "background-color 0.3s", // Add transition for smooth color change
                 "&:hover": {
-                  backgroundColor: "#0FE4BD", // Change background color on hover
+                  backgroundColor: "#CCEAF6", // Change background color on hover
                 },
               },
-              "& .MuiTableCell-root": {
+              "& tbody .MuiTableCell-root": {
                 color: "#165A72",
+                fontWeight:"600",
                 borderBlock: "none",
               },
             }}
