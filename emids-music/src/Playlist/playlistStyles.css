@@ -2,3 +2,12 @@
     background-color: aqua;
     cursor: pointer;
 } */
+
+.btn-success{
+    background-color: #0FE4BD;
+}
+
+.btn-success:hover{
+    background-color: #0fe4c8;
+
+}

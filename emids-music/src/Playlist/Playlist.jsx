@@ -14,7 +14,6 @@ function Playlist() {
     setLoading(true);
     setTimeout(() => {
       setPlaylistTest(playlistData);
-      console.log(playlistTest);
       setLoading(false);
     }, 1); // Adjust timeout as per your requirement
   };
@@ -31,15 +30,6 @@ function Playlist() {
         <div>
           <PlaylistTable />;
         </div>
-        {/* <div>
-          <button
-            color="primary"
-            style={{ marginLeft: "25px" }}
-            className="px-4 btn btn-primary "
-            onClick={routeChange}>
-            Add PlayList
-          </button>
-        </div> */}
       </>
     );
   }

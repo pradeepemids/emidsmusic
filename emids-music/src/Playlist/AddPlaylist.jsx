@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import "./AddPlaylist.css";
 import playlistData from "./playlistData.json";
 import { useNavigate, useLocation } from "react-router-dom";
+import ApiManager from "../Shared/ApiManager";
 
 function AddPlaylist({}) {
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state;
-  // console.log(location.state);
   const getPrefilledData = () => {
     const matchingPlaylist = playlistData.playlists.find(
       (playlist) => playlist.id === state
     );
-    // console.log("matchingPlaylist.genre", matchingPlaylist.genre);
     return matchingPlaylist
       ? {
           playlistName: matchingPlaylist.title,
-          genre: matchingPlaylist.genre,
+          genre: {
+            id: 1,
+            genre: "Pop music",
+          },
           song: [],
           coverImage: matchingPlaylist.image,
         }
@@ -33,15 +35,23 @@ function AddPlaylist({}) {
   const [successMessage, setSuccessMessage] = useState("");
   const [genres, setGenres] = useState(null);
   const [songs, setSongs] = useState([]);
-  console.log(formData, "formData");
-  let test122 = null;
-  if (!!genres) {
-    console.log(genres, "genres");
-    let test122 = genres.filter((x) => x.genre == formData.genre)[0]?.id;
-    console.log("test122", test122);
-  }
+  const [songsTest, setSongsTest] = useState([]);
 
   const handleInputChange = (event) => {
+    const { name, value, options } = event.target;
+    if (!options) {
+      setFormData({ ...formData, [name]: value });
+      return;
+    }
+
+    const songList = Array.from(options).filter((option) => option.selected);
+    let selectedSong = songsTest.filter(
+      (x) => x.id == Number(songList[0]?.value)
+    );
+    setFormData({ ...formData, [name]: selectedSong });
+  };
+
+  const handleGenreInputChange = (event) => {
     const { name, value, options } = event.target;
     if (!options) {
       setFormData({ ...formData, [name]: value });
@@ -66,22 +76,15 @@ function AddPlaylist({}) {
       setErrorMessage("Please provide both playlist name, genre, and song.");
       return;
     }
+
     const newEntry = {
       id: !!state ? Number(state) : playlistData.playlists.length + 1,
       title: playlistName,
-      genre: genre[0].title,
+      genre: [{ id: genre[0].id, genre: genre[0].title }],
       image:
         coverImage ||
         "https://pixabay.com/photos/guitar-player-music-guitarist-5043613/",
-      tracks: song.map((selectedSong, index) => ({
-        id: index + 1,
-        title: selectedSong.title,
-        artist: "Artist",
-        image:
-          coverImage ||
-          "https://pixabay.com/photos/guitar-player-music-guitarist-5043613/",
-        duration: "3:45",
-      })),
+      tracks: formData.song,
     };
 
     if (!!state) {
@@ -110,26 +113,21 @@ function AddPlaylist({}) {
   const getGenres = () => {
     const genresWithIds = playlistData.playlists.map((playlist) => ({
       id: playlist.id,
-      genre: playlist.genre,
+      genre: playlist.genre[0].genre,
     }));
     setGenres(genresWithIds);
   };
 
-  const getAllSongs = () => {
-    const allSongs = playlistData.playlists.reduce((acc, playlist) => {
-      return acc.concat(
-        playlist.tracks.map((track) => ({
-          id: track.id,
-          title: track.title,
-        }))
-      );
-    }, []);
-    setSongs(allSongs);
+  const getSongs = (searchInput) => {
+    ApiManager.getSongs(searchInput).then((result) => {
+      console.log("result from API ====>", result);
+      setSongsTest(result);
+    });
   };
 
   useEffect(() => {
     getGenres();
-    getAllSongs();
+    getSongs("trending");
   }, []);
 
   return (
@@ -162,7 +160,7 @@ function AddPlaylist({}) {
             id="genre"
             name="genre"
             value={formData.genre.id}
-            onChange={(event) => handleInputChange(event)}>
+            onChange={(event) => handleGenreInputChange(event)}>
             <option value="">Select a genre</option>
             {genres &&
               genres.map((genreItem) => {
@@ -186,8 +184,8 @@ function AddPlaylist({}) {
             value={formData.song.title}
             onChange={handleInputChange}>
             <option value="">Select a song</option>
-            {songs &&
-              songs.map((songItem) => (
+            {songsTest &&
+              songsTest.map((songItem) => (
                 <option key={songItem.id} value={songItem.id}>
                   {songItem.title}
                 </option>

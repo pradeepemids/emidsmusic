@@ -17,21 +17,16 @@ function PlaylistTable() {
 
   const navigate = useNavigate();
   const handleDeletePlaylist = (event, id) => {
-    console.log(playlistTest);
     const filteredPlaylists = {
       playlists: playlistTest.playlists.filter(
         (playlist) => playlist.id !== id
       ),
     };
-    console.log(filteredPlaylists);
     setPlaylistTest(filteredPlaylists);
     playlistData.playlists = playlistData.playlists.filter((x) => x.id != id);
-
-    console.log(playlistTest);
   };
 
   const handleUpdatePlaylist = (event, id) => {
-    console.log(playlistTest);
     navigate(`add-playlist`, {
       state: id,
     });
@@ -44,13 +39,11 @@ function PlaylistTable() {
       } else {
         setPlaylistTest(playlistData);
       }
-      console.log(playlistTest);
     }, 1); // Adjust timeout as per your requirement
   };
 
   useEffect(() => {
     getData();
-    console.log(playlistData);
   }, []);
 
   if (!!playlistTest) {
@@ -85,14 +78,14 @@ function PlaylistTable() {
               sx={{
                 minWidth: 1000,
                 "& .MuiTableRow-root": {
-                  backgroundColor: "#292929",
+                  backgroundColor: "rgb(249, 249, 249, 0.7)",
                   transition: "background-color 0.3s", // Add transition for smooth color change
                   "&:hover": {
-                    backgroundColor: "#535353", // Change background color on hover
+                    backgroundColor: "#0FE4BD", // Change background color on hover
                   },
                 },
                 "& .MuiTableCell-root": {
-                  color: "#fff",
+                  color: "#212529",
                   borderBlock: "none",
                 },
               }}
@@ -102,8 +95,8 @@ function PlaylistTable() {
                   <TableCell>Image</TableCell>
                   <TableCell align="right">Playlist Name</TableCell>
                   <TableCell align="right">Genre</TableCell>
+                  <TableCell align="right">Tracks</TableCell>{" "}
                   <TableCell align="right">Actions</TableCell>{" "}
-                  {/* New column for actions */}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -112,7 +105,7 @@ function PlaylistTable() {
                     key={al.id}
                     onClick={() =>
                       navigate(`song`, {
-                        state: al?.title,
+                        state: al,
                       })
                     }
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
@@ -136,7 +129,13 @@ function PlaylistTable() {
                       key={al.id}
                       align="right"
                       style={{ height: 50, width: 150 }}>
-                      {al.genre}
+                      {al.genre[0].genre}
+                    </TableCell>
+                    <TableCell
+                      key={al.id}
+                      align="right"
+                      style={{ height: 50, width: 150 }}>
+                      {al.tracks.length}
                     </TableCell>
                     <TableCell align="right">
                       {/* Delete button with onClick handler */}
@@ -146,7 +145,6 @@ function PlaylistTable() {
                           event.stopPropagation();
                           // Add your edit logic here
                           handleUpdatePlaylist(event, al.id);
-                          console.log(`Editing playlist with id ${al.id}`);
                         }}>
                         <EditIcon />
                       </IconButton>
@@ -167,7 +165,6 @@ function PlaylistTable() {
         </div>
 
         <button
-          color="primary"
           style={{ marginLeft: "25px" }}
           className="px-4 btn btn-success "
           onClick={() => navigate(`add-playlist`)}>
