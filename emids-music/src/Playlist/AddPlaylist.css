@@ -25,7 +25,7 @@
   }
   
   .neon-hover {
-    background-color: #4CAF50;
+    background-color: #0FE4BD;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -40,7 +40,7 @@
   }
   
   .neon-hover:hover {
-    background-color: #0b6623;
-    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 80px #00ff00;
+    background-color: #0FE4BD;
+    box-shadow: 0 0 10px #3ef7e8, 0 0 20px #3ef7e8, 0 0 40px #3ef7e8, 0 0 80px #3ef7e8;
   }
   

@@ -3,44 +3,266 @@
     {
       "id": 1,
       "title": "Playlist 1",
-      "genre": "Pop music",
+      "genre": [
+        {
+          "id": 1,
+          "genre": "Pop music"
+        }
+      ],
       "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
       "tracks": [
         {
-          "id": 1,
-          "title": "Track 1",
-          "artist": "Artist 1",
-          "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
-          "duration": "3:45"
+          "id": 522434502,
+          "readable": true,
+          "title": "Trending",
+          "title_short": "Trending",
+          "title_version": "",
+          "link": "https://www.deezer.com/track/522434502",
+          "duration": 145,
+          "rank": 205920,
+          "explicit_lyrics": false,
+          "explicit_content_lyrics": 0,
+          "explicit_content_cover": 2,
+          "preview": "https://cdns-preview-d.dzcdn.net/stream/c-d25f0a560db46a27287c5053e7334309-4.mp3",
+          "md5_image": "bef9eab47478bb05154ee8eaaa03732f",
+          "artist": {
+            "id": 1087063,
+            "name": "Squash",
+            "link": "https://www.deezer.com/artist/1087063",
+            "picture": "https://api.deezer.com/artist/1087063/image",
+            "picture_small": "https://e-cdns-images.dzcdn.net/images/artist/c9d9744488f54bab87f7d48d9714cb76/56x56-000000-80-0-0.jpg",
+            "picture_medium": "https://e-cdns-images.dzcdn.net/images/artist/c9d9744488f54bab87f7d48d9714cb76/250x250-000000-80-0-0.jpg",
+            "picture_big": "https://e-cdns-images.dzcdn.net/images/artist/c9d9744488f54bab87f7d48d9714cb76/500x500-000000-80-0-0.jpg",
+            "picture_xl": "https://e-cdns-images.dzcdn.net/images/artist/c9d9744488f54bab87f7d48d9714cb76/1000x1000-000000-80-0-0.jpg",
+            "tracklist": "https://api.deezer.com/artist/1087063/top?limit=50",
+            "type": "artist"
+          },
+          "album": {
+            "id": 67370342,
+            "title": "Trending",
+            "cover": "https://api.deezer.com/album/67370342/image",
+            "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/bef9eab47478bb05154ee8eaaa03732f/56x56-000000-80-0-0.jpg",
+            "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/bef9eab47478bb05154ee8eaaa03732f/250x250-000000-80-0-0.jpg",
+            "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/bef9eab47478bb05154ee8eaaa03732f/500x500-000000-80-0-0.jpg",
+            "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/bef9eab47478bb05154ee8eaaa03732f/1000x1000-000000-80-0-0.jpg",
+            "md5_image": "bef9eab47478bb05154ee8eaaa03732f",
+            "tracklist": "https://api.deezer.com/album/67370342/tracks",
+            "type": "album"
+          },
+          "type": "track"
         },
         {
-          "id": 2,
-          "title": "Track 2",
-          "artist": "Artist 2",
-          "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
-          "duration": "4:20"
+          "id": 2099745667,
+          "readable": true,
+          "title": "Trending",
+          "title_short": "Trending",
+          "title_version": "",
+          "link": "https://www.deezer.com/track/2099745667",
+          "duration": 182,
+          "rank": 377251,
+          "explicit_lyrics": true,
+          "explicit_content_lyrics": 1,
+          "explicit_content_cover": 0,
+          "preview": "https://cdns-preview-b.dzcdn.net/stream/c-bde6e00263d153a04af4c663e022d6d0-5.mp3",
+          "md5_image": "e5bd5431e156dc51e39a1233b83f48d2",
+          "artist": {
+            "id": 139171932,
+            "name": "Young Miko",
+            "link": "https://www.deezer.com/artist/139171932",
+            "picture": "https://api.deezer.com/artist/139171932/image",
+            "picture_small": "https://e-cdns-images.dzcdn.net/images/artist/d8866b16abc4ce6be583b58775c61eed/56x56-000000-80-0-0.jpg",
+            "picture_medium": "https://e-cdns-images.dzcdn.net/images/artist/d8866b16abc4ce6be583b58775c61eed/250x250-000000-80-0-0.jpg",
+            "picture_big": "https://e-cdns-images.dzcdn.net/images/artist/d8866b16abc4ce6be583b58775c61eed/500x500-000000-80-0-0.jpg",
+            "picture_xl": "https://e-cdns-images.dzcdn.net/images/artist/d8866b16abc4ce6be583b58775c61eed/1000x1000-000000-80-0-0.jpg",
+            "tracklist": "https://api.deezer.com/artist/139171932/top?limit=50",
+            "type": "artist"
+          },
+          "album": {
+            "id": 394129447,
+            "title": "TRAP KITTY",
+            "cover": "https://api.deezer.com/album/394129447/image",
+            "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/e5bd5431e156dc51e39a1233b83f48d2/56x56-000000-80-0-0.jpg",
+            "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/e5bd5431e156dc51e39a1233b83f48d2/250x250-000000-80-0-0.jpg",
+            "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/e5bd5431e156dc51e39a1233b83f48d2/500x500-000000-80-0-0.jpg",
+            "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/e5bd5431e156dc51e39a1233b83f48d2/1000x1000-000000-80-0-0.jpg",
+            "md5_image": "e5bd5431e156dc51e39a1233b83f48d2",
+            "tracklist": "https://api.deezer.com/album/394129447/tracks",
+            "type": "album"
+          },
+          "type": "track"
+        },
+        {
+          "id": 2442150535,
+          "readable": true,
+          "title": "Pinkpantheress - Just a waste",
+          "title_short": "Pinkpantheress - Just a waste",
+          "title_version": "",
+          "link": "https://www.deezer.com/track/2442150535",
+          "duration": 126,
+          "rank": 292075,
+          "explicit_lyrics": false,
+          "explicit_content_lyrics": 0,
+          "explicit_content_cover": 2,
+          "preview": "https://cdns-preview-0.dzcdn.net/stream/c-0c984139a4e1c4503acd6a8d78a074e7-1.mp3",
+          "md5_image": "67a837606e75acccf0738cd198252ec7",
+          "artist": {
+            "id": 191144337,
+            "name": "Karry_b",
+            "link": "https://www.deezer.com/artist/191144337",
+            "picture": "https://api.deezer.com/artist/191144337/image",
+            "picture_small": "https://e-cdns-images.dzcdn.net/images/artist/7731b4cc04bfeb0248e6939b04f96f9f/56x56-000000-80-0-0.jpg",
+            "picture_medium": "https://e-cdns-images.dzcdn.net/images/artist/7731b4cc04bfeb0248e6939b04f96f9f/250x250-000000-80-0-0.jpg",
+            "picture_big": "https://e-cdns-images.dzcdn.net/images/artist/7731b4cc04bfeb0248e6939b04f96f9f/500x500-000000-80-0-0.jpg",
+            "picture_xl": "https://e-cdns-images.dzcdn.net/images/artist/7731b4cc04bfeb0248e6939b04f96f9f/1000x1000-000000-80-0-0.jpg",
+            "tracklist": "https://api.deezer.com/artist/191144337/top?limit=50",
+            "type": "artist"
+          },
+          "album": {
+            "id": 484742885,
+            "title": "Trending sped up vol.45",
+            "cover": "https://api.deezer.com/album/484742885/image",
+            "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/67a837606e75acccf0738cd198252ec7/56x56-000000-80-0-0.jpg",
+            "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/67a837606e75acccf0738cd198252ec7/250x250-000000-80-0-0.jpg",
+            "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/67a837606e75acccf0738cd198252ec7/500x500-000000-80-0-0.jpg",
+            "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/67a837606e75acccf0738cd198252ec7/1000x1000-000000-80-0-0.jpg",
+            "md5_image": "67a837606e75acccf0738cd198252ec7",
+            "tracklist": "https://api.deezer.com/album/484742885/tracks",
+            "type": "album"
+          },
+          "type": "track"
         }
       ]
     },
     {
-      "id": 10,
+      "id": 2,
       "title": "Playlist 2",
-      "genre": "Rhythm and blues",
+      "genre": [
+        {
+          "id": 2,
+          "genre": "Rhythm and blues"
+        }
+      ],
       "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
       "tracks": [
         {
-          "id": 3,
-          "title": "Track 3",
-          "artist": "Artist 3",
-          "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
-          "duration": "5:10"
+          "id": 2099022917,
+          "readable": true,
+          "title": "Trending",
+          "title_short": "Trending",
+          "title_version": "",
+          "link": "https://www.deezer.com/track/2099022917",
+          "duration": 158,
+          "rank": 425493,
+          "explicit_lyrics": true,
+          "explicit_content_lyrics": 1,
+          "explicit_content_cover": 2,
+          "preview": "https://cdns-preview-5.dzcdn.net/stream/c-5c623308ed194557e2ac6f4c7d48b944-2.mp3",
+          "md5_image": "13bc88f638d065227672c91993a0f062",
+          "artist": {
+            "id": 95873492,
+            "name": "Dei V",
+            "link": "https://www.deezer.com/artist/95873492",
+            "picture": "https://api.deezer.com/artist/95873492/image",
+            "picture_small": "https://e-cdns-images.dzcdn.net/images/artist/eb25e53866bb328cd978a9135f89c17f/56x56-000000-80-0-0.jpg",
+            "picture_medium": "https://e-cdns-images.dzcdn.net/images/artist/eb25e53866bb328cd978a9135f89c17f/250x250-000000-80-0-0.jpg",
+            "picture_big": "https://e-cdns-images.dzcdn.net/images/artist/eb25e53866bb328cd978a9135f89c17f/500x500-000000-80-0-0.jpg",
+            "picture_xl": "https://e-cdns-images.dzcdn.net/images/artist/eb25e53866bb328cd978a9135f89c17f/1000x1000-000000-80-0-0.jpg",
+            "tracklist": "https://api.deezer.com/artist/95873492/top?limit=50",
+            "type": "artist"
+          },
+          "album": {
+            "id": 393993957,
+            "title": "Trending",
+            "cover": "https://api.deezer.com/album/393993957/image",
+            "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/13bc88f638d065227672c91993a0f062/56x56-000000-80-0-0.jpg",
+            "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/13bc88f638d065227672c91993a0f062/250x250-000000-80-0-0.jpg",
+            "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/13bc88f638d065227672c91993a0f062/500x500-000000-80-0-0.jpg",
+            "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/13bc88f638d065227672c91993a0f062/1000x1000-000000-80-0-0.jpg",
+            "md5_image": "13bc88f638d065227672c91993a0f062",
+            "tracklist": "https://api.deezer.com/album/393993957/tracks",
+            "type": "album"
+          },
+          "type": "track"
         },
         {
-          "id": 4,
-          "title": "Track 4",
-          "artist": "Artist 4",
-          "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
-          "duration": "4:00"
+          "id": 522434502,
+          "readable": true,
+          "title": "Trending",
+          "title_short": "Trending",
+          "title_version": "",
+          "link": "https://www.deezer.com/track/522434502",
+          "duration": 145,
+          "rank": 205920,
+          "explicit_lyrics": false,
+          "explicit_content_lyrics": 0,
+          "explicit_content_cover": 2,
+          "preview": "https://cdns-preview-d.dzcdn.net/stream/c-d25f0a560db46a27287c5053e7334309-4.mp3",
+          "md5_image": "bef9eab47478bb05154ee8eaaa03732f",
+          "artist": {
+            "id": 1087063,
+            "name": "Squash",
+            "link": "https://www.deezer.com/artist/1087063",
+            "picture": "https://api.deezer.com/artist/1087063/image",
+            "picture_small": "https://e-cdns-images.dzcdn.net/images/artist/c9d9744488f54bab87f7d48d9714cb76/56x56-000000-80-0-0.jpg",
+            "picture_medium": "https://e-cdns-images.dzcdn.net/images/artist/c9d9744488f54bab87f7d48d9714cb76/250x250-000000-80-0-0.jpg",
+            "picture_big": "https://e-cdns-images.dzcdn.net/images/artist/c9d9744488f54bab87f7d48d9714cb76/500x500-000000-80-0-0.jpg",
+            "picture_xl": "https://e-cdns-images.dzcdn.net/images/artist/c9d9744488f54bab87f7d48d9714cb76/1000x1000-000000-80-0-0.jpg",
+            "tracklist": "https://api.deezer.com/artist/1087063/top?limit=50",
+            "type": "artist"
+          },
+          "album": {
+            "id": 67370342,
+            "title": "Trending",
+            "cover": "https://api.deezer.com/album/67370342/image",
+            "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/bef9eab47478bb05154ee8eaaa03732f/56x56-000000-80-0-0.jpg",
+            "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/bef9eab47478bb05154ee8eaaa03732f/250x250-000000-80-0-0.jpg",
+            "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/bef9eab47478bb05154ee8eaaa03732f/500x500-000000-80-0-0.jpg",
+            "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/bef9eab47478bb05154ee8eaaa03732f/1000x1000-000000-80-0-0.jpg",
+            "md5_image": "bef9eab47478bb05154ee8eaaa03732f",
+            "tracklist": "https://api.deezer.com/album/67370342/tracks",
+            "type": "album"
+          },
+          "type": "track"
+        },
+        {
+          "id": 2662788902,
+          "readable": true,
+          "title": "Crazy Love (ASOT 1160) [Trending Track]",
+          "title_short": "Crazy Love (ASOT 1160) [Trending Track]",
+          "title_version": "",
+          "link": "https://www.deezer.com/track/2662788902",
+          "duration": 258,
+          "rank": 470536,
+          "explicit_lyrics": false,
+          "explicit_content_lyrics": 0,
+          "explicit_content_cover": 2,
+          "preview": "https://cdns-preview-5.dzcdn.net/stream/c-51a3ebecf1a21093ae640190e0efc3de-1.mp3",
+          "md5_image": "12a5c1ba2c7dc57da7fad16592f72744",
+          "artist": {
+            "id": 15002,
+            "name": "Above & Beyond",
+            "link": "https://www.deezer.com/artist/15002",
+            "picture": "https://api.deezer.com/artist/15002/image",
+            "picture_small": "https://e-cdns-images.dzcdn.net/images/artist/a159a05bd05255371563fb0ecdbe2016/56x56-000000-80-0-0.jpg",
+            "picture_medium": "https://e-cdns-images.dzcdn.net/images/artist/a159a05bd05255371563fb0ecdbe2016/250x250-000000-80-0-0.jpg",
+            "picture_big": "https://e-cdns-images.dzcdn.net/images/artist/a159a05bd05255371563fb0ecdbe2016/500x500-000000-80-0-0.jpg",
+            "picture_xl": "https://e-cdns-images.dzcdn.net/images/artist/a159a05bd05255371563fb0ecdbe2016/1000x1000-000000-80-0-0.jpg",
+            "tracklist": "https://api.deezer.com/artist/15002/top?limit=50",
+            "type": "artist"
+          },
+          "album": {
+            "id": 547892372,
+            "title": "ASOT 1160 - A State of Trance Episode 1160",
+            "cover": "https://api.deezer.com/album/547892372/image",
+            "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/12a5c1ba2c7dc57da7fad16592f72744/56x56-000000-80-0-0.jpg",
+            "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/12a5c1ba2c7dc57da7fad16592f72744/250x250-000000-80-0-0.jpg",
+            "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/12a5c1ba2c7dc57da7fad16592f72744/500x500-000000-80-0-0.jpg",
+            "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/12a5c1ba2c7dc57da7fad16592f72744/1000x1000-000000-80-0-0.jpg",
+            "md5_image": "12a5c1ba2c7dc57da7fad16592f72744",
+            "tracklist": "https://api.deezer.com/album/547892372/tracks",
+            "type": "album"
+          },
+          "type": "track"
         }
       ]
     }
