@@ -209,7 +209,7 @@ function AddPlaylist({}) {
         {errorMessage && (
           <div className="alert alert-danger">{errorMessage}</div>
         )}
-        <button type="submit" className="btn btn-primary neon-hover">
+        <button type="submit" className="btn btn-primary neon-hover" style={{background: "#23c785"}}>
           Add
         </button>
       </form>
