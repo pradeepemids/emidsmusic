@@ -33,7 +33,8 @@ h2 {
 }
 
 .main-div {
-  margin-left: 20%;
+  margin-left: 45vh;
+  width: 100%;
 }
 
 .app a.active {

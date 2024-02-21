@@ -1,41 +1,34 @@
 import * as React from "react";
 import "./playlistStyles.css";
-import "./../Dashboard/Dashboard.css";
-import { useEffect } from "react";
-import axios from "axios";
 import SongCard from "./../Shared/SongCard";
 import { useLocation } from "react-router-dom";
 import ApiManager from "../Shared/ApiManager";
 
 export default function Songs() {
   const [songs, setSongs] = React.useState([]);
+  const [seachText, setSearchText] = React.useState("");
 
   var songsData = null;
+
   const location = useLocation();
-  const state = location.state;
+    const state = location.state;
 
-  const getSongs = async () => {
-    const { data } = await axios.get(
-      "https://deezerdevs-deezer.p.rapidapi.com/search",
-      {
-        headers: {
-          "X-RapidAPI-Key":
-            "1f098edf05msh22b8c9bc4a1753ep17ea78jsn2ab728790b37",
-          "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
-        },
-        params: { q: "trending" },
-      }
-    );
-
-    setSongs(data.data);
+  const getSongs = (searchInput) => {
+    ApiManager.getSongs(searchInput).then((result) => {
+      console.log('result from API ====>', result)
+      setSongs(result);
+    });
   };
 
-  useEffect(() => {
-    getSongs();
-  }, []);
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      setQ();
+    }
+  };
 
-  function setQ(data) {
-    console.log(data);
+
+  function setQ() {
+    getSongs(seachText);
   }
 
   return (
@@ -47,36 +40,39 @@ export default function Songs() {
           margin: "auto",
           width: "18%",
           padding: "10px",
-          paddingBottom: "50px",
+          paddingBottom: "40px",
         }}>
-        Songs
+        {state.title}
       </h1>
 
-      <nav className="navbar">
-        <div className="container-fluid ">
+        <div className="container-fluids">
           <div className="d-flex">
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
-              style={{ width: "900px" }}
-              onClick={(e) => setQ(e.target.value)}
+              style={{ width: "830px" }}
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
             <button
               className="btn btn-outline-success"
               type="submit"
-              style={{ color: "white" }}>
+              onClick={setQ}
+              style={{ color: "white" , background: "#23c785"}}>
               Search
             </button>
           </div>
         </div>
-      </nav>
-      <div className="main-dashboardBody">
+      <div className="main-songsBody">
         <div className="songs-dashboard" style={{ height: "100%" }}>
           <div className="col">
             <div className="row">
-              {state.tracks.map((song, index) => {
+              { (songs.length==0)?
+              state.tracks.map((song, index) => {
+                return <SongCard key={index} songsdata={song} />;
+              }) : songs.map((song, index) => {
                 return <SongCard key={index} songsdata={song} />;
               })}
             </div>
