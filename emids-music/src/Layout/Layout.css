@@ -34,6 +34,7 @@ h2 {
 
 .main-div {
   margin-left: 45vh;
+  width: 100%;
 }
 
 .app a.active {
