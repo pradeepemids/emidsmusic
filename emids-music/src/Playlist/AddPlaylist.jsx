@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AddPlaylist.css";
-import playlistData from "./playlistData.json";
+import playlistData from "../Json/playlistData.json";
 import { useNavigate, useLocation } from "react-router-dom";
 import ApiManager from "../Shared/ApiManager";
 import Select from "react-select";

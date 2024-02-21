@@ -1,5 +1,5 @@
 import axios from "axios";
-import users from '../Login/users.json'
+import users from '../Json/users.json'
 export class ApiManager {
 
   static async getSongs(searchInput) {

@@ -1,7 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import PlaylistTable from "./PlaylistTable";
-import playlistData from "./playlistData.json"; // Import the JSON file
+import playlistData from "../Json/playlistData.json"; // Import the JSON file
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
