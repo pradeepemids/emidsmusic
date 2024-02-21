@@ -3,6 +3,7 @@ import "./AddPlaylist.css";
 import playlistData from "./playlistData.json";
 import { useNavigate, useLocation } from "react-router-dom";
 import ApiManager from "../Shared/ApiManager";
+import Select from "react-select";
 
 function AddPlaylist({}) {
   const navigate = useNavigate();
@@ -12,13 +13,11 @@ function AddPlaylist({}) {
     const matchingPlaylist = playlistData.playlists.find(
       (playlist) => playlist.id === state
     );
+
     return matchingPlaylist
       ? {
           playlistName: matchingPlaylist.title,
-          genre: {
-            id: 1,
-            genre: "Pop music",
-          },
+          genre: matchingPlaylist.genre[0],
           song: [],
           coverImage: matchingPlaylist.image,
         }
@@ -34,8 +33,8 @@ function AddPlaylist({}) {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [genres, setGenres] = useState(null);
-  const [songs, setSongs] = useState([]);
   const [songsTest, setSongsTest] = useState([]);
+  const [skills, setSkills] = useState([]);
 
   const handleInputChange = (event) => {
     const { name, value, options } = event.target;
@@ -49,6 +48,17 @@ function AddPlaylist({}) {
       (x) => x.id == Number(songList[0]?.value)
     );
     setFormData({ ...formData, [name]: selectedSong });
+  };
+
+  const handleSongsChange = (skills) => {
+    let data = [];
+    skills.forEach((element) => {
+      const filteredSongs = songsTest.filter((x) => x.id == element.value);
+      data.push(...filteredSongs);
+    });
+    console.log(skills, "skills");
+    setSkills(skills || []);
+    setFormData({ ...formData, name: data });
   };
 
   const handleGenreInputChange = (event) => {
@@ -70,21 +80,22 @@ function AddPlaylist({}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { playlistName, genre, song, coverImage } = formData;
-    if (!playlistName || !genre || !song.length) {
+    const { playlistName, genre, coverImage } = formData;
+    if (!playlistName || !genre) {
       setSuccessMessage(null);
       setErrorMessage("Please provide both playlist name, genre, and song.");
       return;
     }
+    let mm = Array.isArray(genre) ? genre[0] : genre;
 
     const newEntry = {
       id: !!state ? Number(state) : playlistData.playlists.length + 1,
       title: playlistName,
-      genre: [{ id: genre[0].id, genre: genre[0].title }],
+      genre: [{ id: mm.id, title: mm.title }],
       image:
         coverImage ||
         "https://pixabay.com/photos/guitar-player-music-guitarist-5043613/",
-      tracks: formData.song,
+      tracks: formData.name,
     };
 
     if (!!state) {
@@ -113,7 +124,7 @@ function AddPlaylist({}) {
   const getGenres = () => {
     const genresWithIds = playlistData.playlists.map((playlist) => ({
       id: playlist.id,
-      genre: playlist.genre[0].genre,
+      title: playlist.genre[0].title,
     }));
     setGenres(genresWithIds);
   };
@@ -124,6 +135,11 @@ function AddPlaylist({}) {
       setSongsTest(result);
     });
   };
+
+  const options = songsTest.map((songItem) => ({
+    value: songItem.id,
+    label: songItem.title,
+  }));
 
   useEffect(() => {
     getGenres();
@@ -166,7 +182,7 @@ function AddPlaylist({}) {
               genres.map((genreItem) => {
                 return (
                   <option key={genreItem.id} value={genreItem.id}>
-                    {genreItem.genre}
+                    {genreItem.title}
                   </option>
                 );
               })}
@@ -177,20 +193,15 @@ function AddPlaylist({}) {
           <label htmlFor="song" style={{ color: "white" }}>
             Songs<span style={{ color: "red" }}>*</span>:
           </label>
-          <select
+          <Select
             className="form-control"
             id="song"
             name="song"
-            value={formData.song.title}
-            onChange={handleInputChange}>
-            <option value="">Select a song</option>
-            {songsTest &&
-              songsTest.map((songItem) => (
-                <option key={songItem.id} value={songItem.id}>
-                  {songItem.title}
-                </option>
-              ))}
-          </select>
+            options={options}
+            onChange={handleSongsChange}
+            value={skills}
+            isMulti
+          />
         </div>
 
         <div className="form-group mb-3">
@@ -209,7 +220,10 @@ function AddPlaylist({}) {
         {errorMessage && (
           <div className="alert alert-danger">{errorMessage}</div>
         )}
-        <button type="submit" className="btn btn-primary neon-hover" style={{background: "#23c785"}}>
+        <button
+          type="submit"
+          className="btn btn-primary neon-hover"
+          style={{ background: "#23c785" }}>
           Add
         </button>
       </form>

@@ -129,7 +129,7 @@ function PlaylistTable() {
                       key={al.id}
                       align="right"
                       style={{ height: 50, width: 150 }}>
-                      {al.genre[0].genre}
+                      {al.genre[0].title}
                     </TableCell>
                     <TableCell
                       key={al.id}

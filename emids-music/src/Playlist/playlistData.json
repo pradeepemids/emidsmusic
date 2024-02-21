@@ -6,7 +6,7 @@
       "genre": [
         {
           "id": 1,
-          "genre": "Pop music"
+          "title": "Pop music"
         }
       ],
       "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
@@ -139,7 +139,7 @@
       "genre": [
         {
           "id": 2,
-          "genre": "Rhythm and blues"
+          "title": "Rhythm and blues"
         }
       ],
       "image": "https://source.unsplash.com/user/c_v_r/1900x800 ",
