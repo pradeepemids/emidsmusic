@@ -54,7 +54,7 @@ function PlaylistTable() {
           style={{
             paddingLeft: "25px",
             paddingTop: "10px",
-            width: "700px",
+            width: "900px",
           }}>
           <h1
             style={{
@@ -91,26 +91,26 @@ function PlaylistTable() {
               aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell style={{ fontSize: "17px", fontWeight: "bold" }}>
+                  <TableCell style={{ color:"white", fontSize: "17px", fontWeight: "bold",backgroundColor:"#0FE4BD" }}>
                     Image
                   </TableCell>
                   <TableCell
-                    style={{ fontSize: "17px", fontWeight: "bold" }}
+                    style={{ color:"white", fontSize: "17px", fontWeight: "bold",backgroundColor:"#0FE4BD" }}
                     align="right">
                     Playlist Name
                   </TableCell>
                   <TableCell
-                    style={{ fontSize: "17px", fontWeight: "bold" }}
+                    style={{ color:"white", fontSize: "17px", fontWeight: "bold",backgroundColor:"#0FE4BD" }}
                     align="right">
                     Genre
                   </TableCell>
                   <TableCell
-                    style={{ fontSize: "17px", fontWeight: "bold" }}
+                    style={{ color:"white", fontSize: "17px", fontWeight: "bold",backgroundColor:"#0FE4BD" }}
                     align="right">
                     Tracks
                   </TableCell>{" "}
                   <TableCell
-                    style={{ fontSize: "17px", fontWeight: "bold" }}
+                    style={{ color:"white", fontSize: "17px", fontWeight: "bold",backgroundColor:"#0FE4BD" }}
                     align="right">
                     Actions
                   </TableCell>{" "}
