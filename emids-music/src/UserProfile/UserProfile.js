@@ -27,18 +27,23 @@ class FormGroup extends React.Component {
 export default class UserProfile extends React.Component {
     constructor(props) {
         super(props);
+
+        let activeUserEmail = localStorage.getItem("currentUser");
+        let cachedUsers = JSON.parse(localStorage.getItem('cachedUsers'));
+        let activeUser = cachedUsers.find(user => user.email === activeUserEmail);
         this.state = {
-            username: '',
-            saveProfileMsg: '',
-            firstname: '',
-            lastname: '',
-            phone: '',
-            address1: '',
-            address2: '',
-            city: '',
-            state: '',
-            zipcode: '',
-            subscribe: false 
+            username: activeUser.username,
+            email: activeUser.email,
+            firstname: activeUser.firstname,
+            lastname: activeUser.lastname,
+            phone: activeUser.phone,
+            address1: activeUser.address1,
+            address2: activeUser.address2,
+            city: activeUser.city,
+            state: activeUser.state,
+            zipcode: activeUser.zipcode,
+            subscribe: activeUser.subscribe,
+            saveProfileMsg: ''
         }
     }
 
