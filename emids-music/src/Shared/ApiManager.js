@@ -24,8 +24,17 @@ export class ApiManager {
 
   static async validateCredentials(credentials) {
     try {
-      let cachedUsers = JSON.parse(localStorage.getItem('cachedUsers'));
-      const email = cachedUsers.find(user => user.username === credentials.username && user.password === credentials.password).email;
+      let email;
+      if(localStorage.getItem('cachedUsers')!= null)
+      {
+         let user = JSON.parse(localStorage.getItem('cachedUsers')).find(user => user.username === credentials.username && user.password === credentials.password);
+         if(user) email = user.email;
+      }
+      else{
+        let user = users.find(user => user.username === credentials.username && user.password === credentials.password);
+        if(user) email = user.email;
+      }
+
       if (email) {
         return email;
       } else {
