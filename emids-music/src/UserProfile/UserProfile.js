@@ -1,6 +1,7 @@
 import React from "react";
 import "./UserProfile.css"
 import blankPhoto from "./blankPhoto.png"
+import ApiManager from "../Shared/ApiManager";
 
 
 class FormGroup extends React.Component {
@@ -26,22 +27,19 @@ class FormGroup extends React.Component {
 export default class UserProfile extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             username: '',
-            email: '',
+            saveProfileMsg: '',
             firstname: '',
             lastname: '',
-            mobile: '',
-            addr1: '',
-            addr2: '',
-            zipcode: '',
+            phone: '',
+            address1: '',
+            address2: '',
             city: '',
             state: '',
-            organization: '',
-            subscribe: false,
-            saveProfileMsg: ''
-        };
+            zipcode: '',
+            subscribe: false 
+        }
     }
 
     handleInputChange = (event) => {
@@ -60,10 +58,13 @@ export default class UserProfile extends React.Component {
     }
 
     handleSubmit = () => {
-        this.setState({ saveProfileMsg: 'Profile details saved successfully.' });
+        ApiManager.saveUser(this.state).then(result => {
+            if (result)
+                this.setState({ saveProfileMsg: 'Profile details saved successfully.' });
+        });
     }
 
-    render() {
+    render () {
         return (
             <div className="user-profile">
                 <div>
@@ -81,9 +82,9 @@ export default class UserProfile extends React.Component {
                                 <div className="form">
                                     <FormGroup type="text" name="firstname" label="Firstname" state={this.state.firstname} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
                                     <FormGroup type="text" name="lastname" label="Lastname" state={this.state.lastname} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
-                                    <FormGroup type="text" name="mobile" label="Mobile" state={this.state.mobile} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
-                                    <FormGroup type="text" name="addr1" label="Address1" state={this.state.addr1} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
-                                    <FormGroup type="text" name="addr2" label="Address2" state={this.state.addr2} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
+                                    <FormGroup type="text" name="phone" label="Phone" state={this.state.phone} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
+                                    <FormGroup type="text" name="address1" label="Address1" state={this.state.address1} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
+                                    <FormGroup type="text" name="address2" label="Address2" state={this.state.address2} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
                                     <FormGroup type="text" name="city" label="City" state={this.state.city} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
                                     <FormGroup type="text" name="state" label="State" state={this.state.state} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
                                     <FormGroup type="text" name="zipcode" label="Zipcode" state={this.state.zipcode} onchange={this.handleInputChange} onkeydown={this.handleKeyDown} />
