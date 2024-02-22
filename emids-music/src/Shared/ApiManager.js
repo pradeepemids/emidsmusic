@@ -44,5 +44,16 @@ export class ApiManager {
       console.error(error);
     }
   }
+
+  static async saveUser(user) {
+    try {
+      if(user)
+        return true;
+      else
+        return false;
+    } catch (error) {
+      console.error(error);
+    }
+  }  
 }
 export default ApiManager;
