@@ -6,6 +6,8 @@ import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import users from '../Json/users.json'
+
 
 export default class Register extends React.Component {
     constructor(props) {
@@ -31,7 +33,6 @@ export default class Register extends React.Component {
             confirmPassword: false,
         };
     }
-
     handleInputChange = (event) => {
         const name = event.target.name;
         var value = event.target.value;
@@ -174,9 +175,16 @@ export default class Register extends React.Component {
                 this.setState({ confirmPasswordErrorMsg: 'Please enter Confirm Password' });
             }
         } else {
-            //const navigate = useNavigate();
+            
             if (this.state.username && this.state.email && this.state.password && this.state.confirmPassword && !this.errors.username && !this.errors.email && !this.errors.password && !this.errors.confirmPassword) {
                 //navigate('/layout');
+                const newEntry = {
+                    "username": this.state.username,
+                    "email": this.state.email,
+                    "password": this.state.password
+                  };
+                  users.push(newEntry);
+                  localStorage.setItem('cachedUsers', JSON.stringify(users));
                 window.location.href = '/';
             } else {
                 this.errors.username = false;
@@ -192,7 +200,7 @@ export default class Register extends React.Component {
             <div className="register-login">
                 <div>
                     <div className="base-container">
-                        <div>
+                        <div className="image-div">
                             <img src={musicImg} alt="Emids Music" className="image" />
                         </div>
                         <div className="login-form">
@@ -200,18 +208,18 @@ export default class Register extends React.Component {
                             <div className="content">
                                 <div className="form">
                                     <div className="form-group">
-                                        <label htmlFor="username">Username</label>
+                                        <label>Username</label>
                                         <input type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} onKeyDown={this.handleKeyDown} onBlur={this.validateNameInput} />
                                         <span className="error-msg">{this.errors.username && <span>{this.state.userNameErrorMsg}</span>}</span>
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="email">Email</label>
+                                        <label>Email</label>
                                         <input type="text" name="email" value={this.state.email} placeholder="Email" onChange={this.handleInputChange} onKeyDown={this.handleKeyDown} onBlur={this.validateEmailInput} />
                                         <span className="error-msg">{this.errors.email && <span>{this.state.emailErrorMsg}</span>}</span>
                                     </div>
                                     <div className="form-group">
                                         <div>
-                                            <label htmlFor="password">Password</label>
+                                            <label>Password</label>
                                             <Tooltip className="info" title="Password must contain at least 8 characters with one uppercase letter, one lowercase letter and one number">
                                                 <InfoOutlinedIcon />
                                             </Tooltip>
@@ -226,7 +234,7 @@ export default class Register extends React.Component {
                                         {this.errors.error && <span>{this.state.errorMsg}</span>}
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="confirmPassword">Confirm Password</label>
+                                        <label>Confirm Password</label>
                                         <div>
                                             <input type={this.state.showConfirmPassword ? 'text' : 'password'} name="confirmPassword" value={this.state.confirmPassword} placeholder="Confirm Password" onChange={this.handleInputChange} onKeyDown={this.handleKeyDown} onBlur={this.validateConfirmPasswordInput} />
                                             <button className="eye" onClick={this.setShowConfirmPassword}>{this.state.showConfirmPassword ? <VisibilityOffOutlinedIcon /> : <VisibilityOutlinedIcon />}</button>

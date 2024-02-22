@@ -5,6 +5,11 @@
         width: 40rem;
         height: 34.9rem;
     }
+    .image-div
+    {
+        height: 100vh;
+        background-color: black;
+    }
 
     .base-container {
         display: flex;
