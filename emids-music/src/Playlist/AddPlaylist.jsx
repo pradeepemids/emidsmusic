@@ -56,9 +56,11 @@ function AddPlaylist({}) {
       const filteredSongs = songsTest.filter((x) => x.id == element.value);
       data.push(...filteredSongs);
     });
-    console.log(skills, "skills");
     setSkills(skills || []);
     setFormData({ ...formData, name: data });
+  };
+  const setPrefilledSongs = (data) => {
+    setSkills(...(data || []));
   };
 
   const handleGenreInputChange = (event) => {
@@ -131,7 +133,6 @@ function AddPlaylist({}) {
 
   const getSongs = (searchInput) => {
     ApiManager.getSongs(searchInput).then((result) => {
-      console.log("result from API ====>", result);
       setSongsTest(result);
     });
   };
@@ -140,10 +141,20 @@ function AddPlaylist({}) {
     value: songItem.id,
     label: songItem.title,
   }));
-
   useEffect(() => {
     getGenres();
     getSongs("trending");
+
+    let mappedData = playlistData.playlists
+      .filter((x) => x.id == state)
+      .map((x) =>
+        x.tracks.map((y) => ({
+          value: y.id,
+          label: y.title,
+        }))
+      );
+
+    setPrefilledSongs(mappedData);
   }, []);
 
   return (
@@ -188,7 +199,6 @@ function AddPlaylist({}) {
               })}
           </select>
         </div>
-
         <div className="form-group mb-3">
           <label htmlFor="song" style={{ color: "white" }}>
             Songs<span style={{ color: "red" }}>*</span>:

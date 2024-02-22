@@ -54,7 +54,7 @@ function PlaylistTable() {
           style={{
             paddingLeft: "25px",
             paddingTop: "10px",
-            width: "100%",
+            width: "700px",
           }}>
           <h1
             style={{
@@ -76,12 +76,11 @@ function PlaylistTable() {
             component={Paper}>
             <Table
               sx={{
-                minWidth: 1000,
                 "& .MuiTableRow-root": {
                   backgroundColor: "rgb(249, 249, 249, 0.7)",
                   transition: "background-color 0.3s", // Add transition for smooth color change
                   "&:hover": {
-                    backgroundColor: "#0FE4BD", // Change background color on hover
+                    backgroundColor: "#e9ecef", // Change background color on hover
                   },
                 },
                 "& .MuiTableCell-root": {
@@ -92,11 +91,29 @@ function PlaylistTable() {
               aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Image</TableCell>
-                  <TableCell align="right">Playlist Name</TableCell>
-                  <TableCell align="right">Genre</TableCell>
-                  <TableCell align="right">Tracks</TableCell>{" "}
-                  <TableCell align="right">Actions</TableCell>{" "}
+                  <TableCell style={{ fontSize: "17px", fontWeight: "bold" }}>
+                    Image
+                  </TableCell>
+                  <TableCell
+                    style={{ fontSize: "17px", fontWeight: "bold" }}
+                    align="right">
+                    Playlist Name
+                  </TableCell>
+                  <TableCell
+                    style={{ fontSize: "17px", fontWeight: "bold" }}
+                    align="right">
+                    Genre
+                  </TableCell>
+                  <TableCell
+                    style={{ fontSize: "17px", fontWeight: "bold" }}
+                    align="right">
+                    Tracks
+                  </TableCell>{" "}
+                  <TableCell
+                    style={{ fontSize: "17px", fontWeight: "bold" }}
+                    align="right">
+                    Actions
+                  </TableCell>{" "}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -112,9 +129,9 @@ function PlaylistTable() {
                     <TableCell
                       key={al.id}
                       align="right"
-                      style={{ height: 50, width: 150 }}>
+                      style={{ height: 50, width: 50 }}>
                       <CardMedia
-                        sx={{ height: 50, width: 50 }}
+                        sx={{ height: 50, width: 50, borderRadius: "10px" }}
                         image={al?.image}
                         title="green iguana"
                       />
@@ -122,28 +139,26 @@ function PlaylistTable() {
                     <TableCell
                       key={al.id}
                       align="right"
-                      style={{ height: 50, width: 150 }}>
+                      style={{ height: 50, width: 50 }}>
                       {al.title}
                     </TableCell>
                     <TableCell
                       key={al.id}
                       align="right"
-                      style={{ height: 50, width: 150 }}>
+                      style={{ height: 50, width: 50 }}>
                       {al.genre[0].title}
                     </TableCell>
                     <TableCell
                       key={al.id}
                       align="right"
-                      style={{ height: 50, width: 150 }}>
+                      style={{ height: 50, width: 50 }}>
                       {al.tracks.length}
                     </TableCell>
-                    <TableCell align="right">
-                      {/* Delete button with onClick handler */}
+                    <TableCell align="right" style={{ height: 50, width: 50 }}>
                       <IconButton
                         color="primary"
                         onClick={(event) => {
                           event.stopPropagation();
-                          // Add your edit logic here
                           handleUpdatePlaylist(event, al.id);
                         }}>
                         <EditIcon />
