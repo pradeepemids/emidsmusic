@@ -119,7 +119,7 @@ export default class Login extends React.Component {
                                 </div>
                             </div>
                             <div className="footer">
-                                <button type="submit" className="btn" onClick={this.handleSubmit}>
+                                <button type="submit" data-testid="login-btn" className="btn" onClick={this.handleSubmit}>
                                     Login
                                 </button>
                             </div>
