@@ -258,7 +258,7 @@ export default class Register extends React.Component {
                                 </div>
                             </div>
                             <div className="footer">
-                                <button type="submit" className="btn" onClick={this.handleSubmit}>
+                                <button type="submit" data-testid="register-btn" className="btn" onClick={this.handleSubmit}>
                                     Register
                                 </button>
                             </div>
