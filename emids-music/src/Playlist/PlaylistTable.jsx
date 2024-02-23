@@ -89,37 +89,54 @@ function PlaylistTable() {
                 },
               }}
               aria-label="simple table">
-              <TableHead
-                sx={{
-                  "& .MuiTableRow-root": {
-                    backgroundColor: "#A9A9A9",
-                    transition: "background-color 0.3s", // Add transition for smooth color change
-                    "&:hover": {
-                      backgroundColor: "#A9A9A9", // Change background color on hover
-                    },
-                  },
-                }}>
+              <TableHead>
                 <TableRow>
-                  <TableCell style={{ color:"white", fontSize: "17px", fontWeight: "bold",backgroundColor:"#0FE4BD" }}>
+                  <TableCell
+                    style={{
+                      color: "white",
+                      fontSize: "17px",
+                      fontWeight: "bold",
+                      backgroundColor: "#0FE4BD",
+                    }}>
                     Image
                   </TableCell>
                   <TableCell
-                    style={{ color:"white", fontSize: "17px", fontWeight: "bold",backgroundColor:"#0FE4BD" }}
+                    style={{
+                      color: "white",
+                      fontSize: "17px",
+                      fontWeight: "bold",
+                      backgroundColor: "#0FE4BD",
+                    }}
                     align="right">
                     Playlist Name
                   </TableCell>
                   <TableCell
-                    style={{ color:"white", fontSize: "17px", fontWeight: "bold",backgroundColor:"#0FE4BD" }}
+                    style={{
+                      color: "white",
+                      fontSize: "17px",
+                      fontWeight: "bold",
+                      backgroundColor: "#0FE4BD",
+                    }}
                     align="right">
                     Genre
                   </TableCell>
                   <TableCell
-                    style={{ color:"white", fontSize: "17px", fontWeight: "bold",backgroundColor:"#0FE4BD" }}
+                    style={{
+                      color: "white",
+                      fontSize: "17px",
+                      fontWeight: "bold",
+                      backgroundColor: "#0FE4BD",
+                    }}
                     align="right">
                     Tracks
                   </TableCell>{" "}
                   <TableCell
-                    style={{ color:"white", fontSize: "17px", fontWeight: "bold",backgroundColor:"#0FE4BD" }}
+                    style={{
+                      color: "white",
+                      fontSize: "17px",
+                      fontWeight: "bold",
+                      backgroundColor: "#0FE4BD",
+                    }}
                     align="right">
                     Actions
                   </TableCell>{" "}
