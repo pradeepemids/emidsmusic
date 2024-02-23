@@ -6,7 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-import users from '../Json/users.json'
+import ApiManager from "../Shared/ApiManager";
 
 
 export default class Register extends React.Component {
@@ -142,6 +142,24 @@ export default class Register extends React.Component {
         }
     };
 
+    registerNewUser = () => {
+        const newUser = {
+            "username": this.state.username,
+            "email": this.state.email,
+            "password": this.state.password
+          };
+
+        ApiManager.registerUser(newUser).then(result => {
+            if (result) {
+                window.location.href = '/';
+            }
+            else {
+                this.errors.error = true;
+                this.setState({ errorMsg: 'Unable to register user' });
+            }
+        });
+    }
+
     setShowPassword = () => {
         this.setState({ showPassword: !this.state.showPassword });
     }
@@ -178,14 +196,7 @@ export default class Register extends React.Component {
             
             if (this.state.username && this.state.email && this.state.password && this.state.confirmPassword && !this.errors.username && !this.errors.email && !this.errors.password && !this.errors.confirmPassword) {
                 //navigate('/layout');
-                const newEntry = {
-                    "username": this.state.username,
-                    "email": this.state.email,
-                    "password": this.state.password
-                  };
-                  users.push(newEntry);
-                  localStorage.setItem('cachedUsers', JSON.stringify(users));
-                window.location.href = '/';
+                  this.registerNewUser();
             } else {
                 this.errors.username = false;
                 this.errors.email = false;

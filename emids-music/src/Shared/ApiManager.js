@@ -1,5 +1,6 @@
 import axios from "axios";
 import users from '../Json/users.json'
+
 export class ApiManager {
 
   static async getSongs(searchInput) {
@@ -40,6 +41,16 @@ export class ApiManager {
       } else {
         return null;
       }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  static async registerUser(user) {
+    try {
+      users.push(user);
+      localStorage.setItem('cachedUsers', JSON.stringify(users));
+      return true;
     } catch (error) {
       console.error(error);
     }
