@@ -3,7 +3,6 @@ import "./UserProfile.css"
 import blankPhoto from "./blankPhoto.png"
 import ApiManager from "../Shared/ApiManager";
 
-
 class FormGroup extends React.Component {
     render () {
         if(this.props.type === "text")
@@ -42,8 +41,7 @@ export default class UserProfile extends React.Component {
             city: activeUser.city,
             state: activeUser.state,
             zipcode: activeUser.zipcode,
-            subscribe: activeUser.subscribe,
-            saveProfileMsg: ''
+            subscribe: activeUser.subscribe
         }
     }
 
@@ -65,7 +63,7 @@ export default class UserProfile extends React.Component {
     handleSubmit = () => {
         ApiManager.saveUser(this.state).then(result => {
             if (result)
-                this.setState({ saveProfileMsg: 'Profile details saved successfully.' });
+                window.alert("Profile details saved successfully.");
         });
     }
 
@@ -100,9 +98,6 @@ export default class UserProfile extends React.Component {
                                 <button type="submit" className="btn" onClick={this.handleSubmit}>
                                     Save Profile
                                 </button>
-                            </div>
-                            <div className="save-msg">
-                                <label>{this.state.saveProfileMsg}</label>
                             </div>
                         </div>
                     </div>
