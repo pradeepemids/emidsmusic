@@ -31,6 +31,8 @@ export default class UserProfile extends React.Component {
         let cachedUsers = JSON.parse(localStorage.getItem('cachedUsers'));
         let activeUser = cachedUsers.find(user => user.email === activeUserEmail);
         this.state = {
+            file: '',
+            imagePreviewUrl: blankPhoto,
             username: activeUser.username,
             email: activeUser.email,
             firstname: activeUser.firstname,
@@ -45,13 +47,26 @@ export default class UserProfile extends React.Component {
         }
     }
 
+    photoUpload = e =>{
+        e.preventDefault();
+        const reader = new FileReader();
+        const file = e.target.files[0];
+        if(file) {
+            reader.onloadend = () => {
+                this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+                });
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
     handleInputChange = (event) => {
         const name = event.target.name;
         var value = event.target.value;
 
         this.setState({ [name]: value });
-
-        this.setState({ saveProfileMsg: '' });
     }
 
     handleKeyDown = (e) => {
@@ -76,9 +91,12 @@ export default class UserProfile extends React.Component {
                             <div className="header">Profile Settings</div>
                             <div className="content">
                                 <div className="userinfo">
-                                    <div className="image-cropper">
-                                        <img src={blankPhoto} alt="Photo" className="image" />
-                                    </div>
+                                    <label htmlFor="photo-upload">
+                                        <div className="image-cropper" >
+                                            <img for="photo-upload" src={this.state.imagePreviewUrl} alt="Photo" className="image"/>
+                                        </div>
+                                        <input id="photo-upload" type="file" onChange={this.photoUpload}/>
+                                    </label>
                                     <span className="username">{this.state.username}</span>
                                     <span>{this.state.email}</span>
                                 </div>

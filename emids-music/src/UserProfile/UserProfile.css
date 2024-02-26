@@ -47,9 +47,16 @@
                     width: auto;
                   }
 
+                  img:hover {
+                    cursor: pointer;
+                  }
+
                 .username {
                     font-weight: bold;
                 }
+                input[type="file"] {
+                    display: none;
+                  }
             }
 
             .form {
