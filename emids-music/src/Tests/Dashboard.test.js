@@ -1,7 +1,8 @@
 import React from "react";
 import { fireEvent, render, screen } from '@testing-library/react'
-import Dashboard from "./Dashboard";
+import Dashboard from "../Dashboard/Dashboard";
  
+
 test('should validate dashboard load', () => {
     render(<Dashboard/>);
     expect(screen.getByText('Trending Songs')).toBeInTheDocument;
