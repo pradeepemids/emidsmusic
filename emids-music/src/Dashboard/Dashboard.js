@@ -7,6 +7,8 @@ import ApiManager from "../Shared/ApiManager";
 export default function Dashboard() {
   const [songs, setSongs] = useState([]);
   const [seachText, setSearchText] = useState("");
+  const [CurrentPlayingsong, setcurrentplayingSong] = useState("");
+
   const getSongs = (searchInput) => {
     ApiManager.getSongs(searchInput).then((result) => {
       console.log('result from API ====>', result)
@@ -20,6 +22,20 @@ export default function Dashboard() {
   const handleSearch = (event) => {
     event.preventDefault();
     getSongs(seachText);
+  }
+
+  const pauseCardAudio = (id) => {
+    if(CurrentPlayingsong!="")
+    {
+      if(CurrentPlayingsong!=id)
+      {
+        document.getElementById(CurrentPlayingsong).pause();
+        setcurrentplayingSong(id);
+      }     
+    }
+    else{
+      setcurrentplayingSong(id);
+    }
   }
 
   return (
@@ -46,26 +62,7 @@ export default function Dashboard() {
             <div className="row">
               {songs.map((song, index) => {
                 return (
-                  <SongCard key={index} songsdata={song} />
-                  /*  <div key={songsdata.album.id} className="col">
-                    <div className="card" style={{ width: "12rem" }}>
-                      <img
-                        src={songsdata.album.cover_small}
-                        className="card-img-top"
-                        alt="..."
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">
-                          Some quick example text to build on the card title and
-                          make up the bulk of the card's content.
-                        </p>
-                        <a href="#" className="btn btn-primary">
-                          Go somewhere
-                        </a>
-                      </div>
-                    </div>
-                  </div>*/
+                  <SongCard key={index} songsdata={song} parentFunction={pauseCardAudio}/>
                 );
               })}
             </div>

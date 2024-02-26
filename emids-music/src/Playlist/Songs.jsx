@@ -7,6 +7,7 @@ import ApiManager from "../Shared/ApiManager";
 export default function Songs() {
   const [songs, setSongs] = React.useState([]);
   const [seachText, setSearchText] = React.useState("");
+  const [CurrentPlayingsong, setcurrentplayingSong] = React.useState("");
 
   var songsData = null;
 
@@ -25,6 +26,20 @@ export default function Songs() {
       setQ();
     }
   };
+
+  const pauseCardAudio = (id) => {
+    if(CurrentPlayingsong!="")
+    {
+      if(CurrentPlayingsong!=id)
+      {
+        document.getElementById(CurrentPlayingsong).pause();
+        setcurrentplayingSong(id);
+      }     
+    }
+    else{
+      setcurrentplayingSong(id);
+    }
+  }
 
 
   function setQ() {
@@ -71,9 +86,9 @@ export default function Songs() {
             <div className="row">
               { (songs.length==0)?
               state.tracks.map((song, index) => {
-                return <SongCard key={index} songsdata={song} />;
+                return <SongCard key={index} songsdata={song} parentFunction={pauseCardAudio} />;
               }) : songs.map((song, index) => {
-                return <SongCard key={index} songsdata={song} />;
+                return <SongCard key={index} songsdata={song} parentFunction={pauseCardAudio} />;
               })}
             </div>
           </div>
