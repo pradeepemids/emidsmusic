@@ -52,7 +52,7 @@ export default function Songs() {
               type="search"
               placeholder="Search"
               aria-label="Search"
-              style={{ width: "800px" }}
+              style={{ width: "790px" }}
               onChange={(e) => setSearchText(e.target.value)}
               onKeyDown={handleKeyDown}
             />

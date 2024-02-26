@@ -1,7 +1,6 @@
 import React from "react";
 import "./Dashboard.css";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import SongCard from "./../Shared/SongCard";
 import ApiManager from "../Shared/ApiManager";
 

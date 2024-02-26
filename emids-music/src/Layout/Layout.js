@@ -35,7 +35,7 @@ function Layout() {
             <MenuItem
               className="menu1"
               component={<Link to="dashboard" className="link" />}
-              icon={<img src={Logo} />}>
+              icon={<img src={Logo} alt=""/>}>
               <h2>EMIDS MUSIC</h2>
             </MenuItem>
             <MenuItem
