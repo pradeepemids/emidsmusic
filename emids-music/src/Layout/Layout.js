@@ -6,7 +6,7 @@ import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { Routes, Route, Link, NavLink } from "react-router-dom";
-import Playlist from "../Playlist/Playlist";
+import Playlist from "../Playlist/Playlist/Playlist";
 import UserProfile from "../UserProfile/UserProfile";
 import React from "react";
 import Logo from "../emids-icon.png";
@@ -28,14 +28,13 @@ function Layout() {
     window.location.href = "/";
   } else {
     return (
-      <div
-        style={{ display: "flex", height: "100%", background: "#0A1172" }}>
+      <div style={{ display: "flex", height: "100%", background: "#0A1172" }}>
         <Sidebar className="app">
           <Menu>
             <MenuItem
               className="menu1"
               component={<Link to="dashboard" className="link" />}
-              icon={<img src={Logo} alt=""/>}>
+              icon={<img src={Logo} alt="" />}>
               <h2>EMIDS MUSIC</h2>
             </MenuItem>
             <MenuItem

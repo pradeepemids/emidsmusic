@@ -232,6 +232,7 @@ function AddPlaylist({}) {
         )}
         <button
           type="submit"
+          data-testid="addPlaylist-btn"
           className="btn btn-primary neon-hover"
           style={{ background: "#23c785" }}>
           Add
